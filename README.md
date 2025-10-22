@@ -2,6 +2,17 @@
 
 Aplikasi web Al-Quran digital modern dengan terjemahan Bahasa Indonesia, audio per ayat dengan mode continuous play, dan jadwal sholat realtime.
 
+## 📸 Screenshots
+
+![Light Mode - Homepage](screenshots/light-mode-home.png)
+*Homepage dengan daftar surah - Light Mode*
+
+![Dark Mode - Homepage](screenshots/dark-mode-home.png)
+*Homepage dengan daftar surah - Dark Mode*
+
+![Surah View](screenshots/light-mode-surah.png)
+*Detail surah dengan audio player dan ayat*
+
 ## 🌟 Fitur Utama
 
 ### Core Features

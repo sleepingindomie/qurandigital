@@ -173,11 +173,11 @@ function goToNext() {
     </header>
 
     <!-- Surah Header -->
-    <section v-if="quranStore.currentSurah" class="bg-gradient-to-br from-sage-500 to-sage-700 dark:from-dark-card dark:to-dark-bg text-white py-16">
+    <section v-if="quranStore.currentSurah" class="bg-gradient-to-br from-sage-500 to-sage-700 dark:from-dark-card dark:to-dark-bg py-16">
       <div class="container mx-auto px-4 text-center">
-        <h2 class="text-5xl md:text-7xl font-arabic mb-4 animate-fade-in-up leading-relaxed">{{ quranStore.currentSurah.nama }}</h2>
-        <h3 class="text-2xl md:text-3xl font-semibold mb-3 animate-fade-in-up">{{ quranStore.currentSurah.namaLatin }}</h3>
-        <p class="text-lg opacity-90 animate-fade-in-up">
+        <h2 class="text-5xl md:text-7xl font-arabic mb-4 animate-fade-in-up leading-relaxed text-gray-900 dark:text-white">{{ quranStore.currentSurah.nama }}</h2>
+        <h3 class="text-2xl md:text-3xl font-semibold mb-3 animate-fade-in-up text-gray-800 dark:text-gray-100">{{ quranStore.currentSurah.namaLatin }}</h3>
+        <p class="text-lg animate-fade-in-up text-gray-800 dark:text-gray-200">
           {{ quranStore.currentSurah.tempatTurun }} • {{ quranStore.currentSurah.jumlahAyat }} Ayat • {{ quranStore.currentSurah.arti }}
         </p>
       </div>
