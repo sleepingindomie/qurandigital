@@ -4,13 +4,13 @@ Aplikasi web Al-Quran digital modern dengan terjemahan Bahasa Indonesia, audio p
 
 ## 📸 Screenshots
 
-![Light Mode - Homepage](screenshots/light-mode-home.png)
+![Light Mode - Homepage](screenshots/light-mode.png)
 *Homepage dengan daftar surah - Light Mode*
 
 ![Dark Mode - Homepage](screenshots/dark-mode-home.png)
 *Homepage dengan daftar surah - Dark Mode*
 
-![Surah View](screenshots/light-mode-surah.png)
+![Surah View](screenshots/dark-mode-surah.png)
 *Detail surah dengan audio player dan ayat*
 
 ## 🌟 Fitur Utama
