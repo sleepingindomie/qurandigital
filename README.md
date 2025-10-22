@@ -23,7 +23,6 @@ Aplikasi web Al-Quran digital modern dengan terjemahan Bahasa Indonesia, audio p
 - **Search & Autocomplete** - Cari surah dengan saran otomatis
 - **Dark/Light Mode** dengan smooth transitions dan adaptive text colors
 - **Responsive Design** - Mobile-first approach untuk semua perangkat
-- **Watermark "DP"** - Branding halus non-intrusive
 
 ### UI/UX Features
 - **Varied Animations** - 3 jenis animasi card yang berbeda (fadeInUp, fadeIn, scaleIn)
@@ -132,67 +131,6 @@ Output akan berada di folder `dist/`
 npm run preview
 ```
 
-## 🎨 Konfigurasi
-
-### Color Palette
-Colors dapat dikustomisasi di `tailwind.config.js`:
-
-```javascript
-colors: {
-  cream: {
-    100: '#F5F5F0',  // Light mode background
-    200: '#E6D8C3',
-    // ...
-  },
-  sage: {
-    500: '#5D866C',  // Main sage green
-    600: '#4a6b56',
-    // ...
-  },
-  dark: {
-    bg: '#222831',    // Dark mode background
-    card: '#393E46',  // Dark mode card
-    // ...
-  }
-}
-```
-
-### Default Location (Prayer Times)
-Default location adalah Jakarta, Indonesia. Bisa diubah di `src/stores/prayer.ts`:
-
-```typescript
-location: {
-  latitude: -6.2088,
-  longitude: 106.8456,
-  city: 'Jakarta',
-  country: 'Indonesia'
-}
-```
-
-## 🎯 Key Features Explained
-
-### Adaptive Color Contrast
-Text colors automatically adapt when switching themes:
-- **Light Mode**: Dark text (gray-800, gray-900) on light backgrounds
-- **Dark Mode**: Light text (white, gray-100) on dark backgrounds
-- Bismillah, prayer times, and all UI elements properly adjust
-
-### Continuous Audio Playback
-- Click "Play All" to start continuous playback
-- Audio automatically advances to next ayat
-- Audio stops when navigating away from surah page
-- Visual indicators show which ayat is currently playing
-
-### Varied Animations
-Three different card animations rotate across surah list:
-- `fadeInUp`: Fade in with upward motion
-- `fadeIn`: Simple fade in
-- `scaleIn`: Scale up with bounce effect
-
-Hover effects alternate between cards:
-- `hover-lift`: Lifts up with shadow
-- `hover-bounce`: Bounces with soft animation
-
 ## 🌐 Browser Support
 
 - Chrome/Edge (Latest)
@@ -200,14 +138,6 @@ Hover effects alternate between cards:
 - Safari (Latest)
 - iOS Safari (14+)
 - Android Browser (Latest)
-
-## 📊 Performance
-
-- Built with Vite for optimized bundling
-- Code splitting with Vue Router
-- Lazy loading for images and components
-- Fast HMR (Hot Module Replacement) in development
-- Optimized production builds
 
 ## 🙏 API Credits
 
@@ -228,26 +158,7 @@ Kontribusi sangat diterima! Silakan buat Pull Request atau Issue untuk:
 - UI/UX improvements
 - Translation
 
-## 🗺️ Roadmap
-
-- [ ] Multi-language support (English, Arabic)
-- [ ] Multiple reciter options
-- [ ] Tafsir/commentary integration
-- [ ] Advanced search (by keyword in ayat)
-- [ ] Share ayat feature (WhatsApp, Twitter, etc.)
-- [ ] Bookmark ayat favorit
-- [ ] Juz & Manzil navigation
-- [ ] Hijri calendar integration
-- [ ] Qibla direction compass
-- [ ] PWA support (installable & offline-capable)
-
-## 📞 Support
-
-Untuk bug reports atau feature requests, silakan buat issue di GitHub repository:
-https://github.com/sleepingindomie/qurandigital/issues
-
 ---
 
 **Al-Quran Digital** - Baca, Dengar, dan Pahami Al-Quran dengan Teknologi Modern
 
-Built with ❤️ using Vue 3 + TypeScript + Vite + TailwindCSS
