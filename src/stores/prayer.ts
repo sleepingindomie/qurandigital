@@ -40,24 +40,16 @@ export const usePrayerStore = defineStore('prayer', () => {
     error.value = null
 
     try {
-      // Always request location on every page load for accuracy
-      console.log('📍 Requesting current location...')
-
-      try {
-        await requestGeolocation()
-        // If successful, location is already updated
-      } catch (err) {
-        // If geolocation fails, try to use saved location
-        const savedLocation = localStorage.getItem('prayer_location')
-        if (savedLocation) {
-          location.value = JSON.parse(savedLocation)
-          isUsingDefaultLocation.value = false
-          console.log('📍 Using saved location:', location.value.city)
-        } else {
-          // Use default location (Jakarta) as last resort
-          isUsingDefaultLocation.value = true
-          console.log('📍 Using default location: Jakarta')
-        }
+      // Load saved location or use default
+      const savedLocation = localStorage.getItem('prayer_location')
+      if (savedLocation) {
+        location.value = JSON.parse(savedLocation)
+        isUsingDefaultLocation.value = false
+        console.log('📍 Using saved location:', location.value.city)
+      } else {
+        // Use default location (Jakarta) until user manually requests their location
+        isUsingDefaultLocation.value = true
+        console.log('📍 Using default location: Jakarta')
       }
 
       // Calculate prayer times with current location
@@ -137,9 +129,39 @@ export const usePrayerStore = defineStore('prayer', () => {
     })
   }
 
+  // Check permission status before requesting location
+  async function checkLocationPermission(): Promise<'granted' | 'denied' | 'prompt' | 'unsupported'> {
+    if (!navigator.permissions) {
+      return 'unsupported'
+    }
+
+    try {
+      const permission = await navigator.permissions.query({ name: 'geolocation' as PermissionName })
+      return permission.state as 'granted' | 'denied' | 'prompt'
+    } catch (err) {
+      console.warn('Permission API not supported:', err)
+      return 'unsupported'
+    }
+  }
+
   // Manual location update - can be triggered by user
   async function updateLocation() {
     try {
+      // Check permission status first
+      const permissionStatus = await checkLocationPermission()
+
+      console.log('📍 Permission status:', permissionStatus)
+
+      if (permissionStatus === 'denied') {
+        // User previously blocked - show instructions
+        locationPermission.value = 'denied'
+        error.value = 'Izin lokasi diblokir. Silakan klik icon 🔒 di address bar, lalu reset izin lokasi untuk mengizinkan akses.'
+        console.warn('⚠️ Location permission denied by user')
+        return
+      }
+
+      // Permission is either 'granted', 'prompt', or 'unsupported'
+      // In all cases, try to request location
       await requestGeolocation()
     } catch (err) {
       console.error('Failed to update location:', err)

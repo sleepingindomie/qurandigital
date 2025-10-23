@@ -176,9 +176,19 @@ function getCardHoverClass(index: number) {
             <span v-if="prayerStore.isUsingDefaultLocation" class="text-xs text-orange-600 dark:text-orange-400 ml-1 font-semibold">(lokasi default)</span>
             <span v-else class="text-xs text-green-600 dark:text-green-400 ml-1">✓ lokasi aktual</span>
           </p>
-          <p v-if="prayerStore.error" class="text-sm text-orange-600 dark:text-orange-400 mt-1">
-            ⚠️ {{ prayerStore.error }}
-          </p>
+          <div v-if="prayerStore.error" class="mt-2 p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg border border-orange-200 dark:border-orange-700">
+            <p class="text-sm text-orange-700 dark:text-orange-300 font-medium mb-1">
+              ⚠️ {{ prayerStore.error }}
+            </p>
+            <p v-if="prayerStore.locationPermission === 'denied'" class="text-xs text-orange-600 dark:text-orange-400 mt-2">
+              <strong>Cara reset izin lokasi:</strong><br>
+              <span class="inline-block mt-1">
+                🔸 <strong>Chrome/Edge:</strong> Klik icon 🔒 di address bar → Site settings → Location → Pilih "Allow"<br>
+                🔸 <strong>Firefox:</strong> Klik icon 🔒 → Permissions → Location → Centang "Allow"<br>
+                🔸 <strong>Safari:</strong> Safari → Settings → Websites → Location → Pilih "Allow"
+              </span>
+            </p>
+          </div>
         </div>
 
         <div v-if="prayerStore.currentPrayer" class="bg-gradient-to-r from-sage-500 to-sage-600 dark:from-dark-accent dark:to-dark-card rounded-lg p-4 mb-4 text-center shadow-md">
