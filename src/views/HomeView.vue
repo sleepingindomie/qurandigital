@@ -152,11 +152,30 @@ function getCardHoverClass(index: number) {
     <section class="container mx-auto px-4 -mt-8">
       <div class="card p-6 lazy-scroll animate-slide-in-left">
         <div class="text-center mb-4">
-          <h3 class="text-2xl font-bold flex items-center justify-center gap-2 text-gray-800 dark:text-white">
-            <span>🕌</span>
-            <span>Waktu Sholat</span>
-          </h3>
-          <p class="text-gray-700 dark:text-gray-200">{{ prayerStore.location.city }}, {{ prayerStore.location.country }}</p>
+          <div class="flex items-center justify-center gap-2 mb-2">
+            <h3 class="text-2xl font-bold flex items-center gap-2 text-gray-800 dark:text-white">
+              <span>🕌</span>
+              <span>Waktu Sholat</span>
+            </h3>
+            <button
+              v-if="prayerStore.isUsingDefaultLocation"
+              @click="prayerStore.updateLocation()"
+              :disabled="prayerStore.isLoading"
+              class="px-3 py-1 text-sm bg-sage-500 hover:bg-sage-600 text-white rounded-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
+              title="Gunakan lokasi Anda untuk waktu sholat yang akurat"
+            >
+              <span>📍</span>
+              <span v-if="!prayerStore.isLoading">Gunakan Lokasi Saya</span>
+              <span v-else>Loading...</span>
+            </button>
+          </div>
+          <p class="text-gray-700 dark:text-gray-200">
+            {{ prayerStore.location.city }}<span v-if="prayerStore.location.country">, {{ prayerStore.location.country }}</span>
+            <span v-if="prayerStore.isUsingDefaultLocation" class="text-xs text-gray-600 dark:text-gray-400 ml-1">(default)</span>
+          </p>
+          <p v-if="prayerStore.error" class="text-sm text-orange-600 dark:text-orange-400 mt-1">
+            {{ prayerStore.error }}
+          </p>
         </div>
 
         <div v-if="prayerStore.currentPrayer" class="bg-gradient-to-r from-sage-500 to-sage-600 dark:from-dark-accent dark:to-dark-card rounded-lg p-4 mb-4 text-center shadow-md">
@@ -175,7 +194,7 @@ function getCardHoverClass(index: number) {
           >
             <div class="font-semibold text-gray-800 dark:text-gray-100 transition-all duration-300">{{ prayer.name }}</div>
             <div class="text-lg font-bold text-gray-900 dark:text-white transition-all duration-300">
-              {{ prayerStore.formatTime(prayerStore.prayerTimes[prayer.key as keyof typeof prayerStore.prayerTimes] as Date) }}
+              {{ prayerStore.formatTime(prayerStore.prayerTimes[prayer.key as 'fajr' | 'dhuhr' | 'asr' | 'maghrib' | 'isha'] as Date) }}
             </div>
           </div>
         </div>

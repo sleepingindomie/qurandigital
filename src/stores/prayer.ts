@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import type { PrayerTimes, Location, PrayerTime } from '@/types'
 import * as adhan from 'adhan'
 
@@ -16,6 +16,8 @@ export const usePrayerStore = defineStore('prayer', () => {
   })
   const isLoading = ref(false)
   const error = ref<string | null>(null)
+  const locationPermission = ref<'prompt' | 'granted' | 'denied' | 'unsupported'>('prompt')
+  const isUsingDefaultLocation = ref(true)
 
   // Update interval
   let updateInterval: number | null = null
@@ -42,10 +44,12 @@ export const usePrayerStore = defineStore('prayer', () => {
       const savedLocation = localStorage.getItem('prayer_location')
       if (savedLocation) {
         location.value = JSON.parse(savedLocation)
+        isUsingDefaultLocation.value = false
         console.log('📍 Using saved location:', location.value.city)
       } else {
-        // Try geolocation
-        await requestGeolocation()
+        // Use default location (Jakarta) until user requests their location
+        isUsingDefaultLocation.value = true
+        console.log('📍 Using default location: Jakarta')
       }
 
       // Calculate prayer times
@@ -70,9 +74,13 @@ export const usePrayerStore = defineStore('prayer', () => {
   async function requestGeolocation() {
     return new Promise<void>((resolve, reject) => {
       if (!navigator.geolocation) {
-        reject(new Error('Geolocation not supported'))
+        locationPermission.value = 'unsupported'
+        reject(new Error('Geolokasi tidak didukung oleh browser Anda'))
         return
       }
+
+      isLoading.value = true
+      error.value = null
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -83,16 +91,51 @@ export const usePrayerStore = defineStore('prayer', () => {
             country: ''
           }
           localStorage.setItem('prayer_location', JSON.stringify(location.value))
+          locationPermission.value = 'granted'
+          isUsingDefaultLocation.value = false
+
           console.log('📍 Geolocation detected:', position.coords)
+
+          // Recalculate prayer times with new location
+          calculatePrayerTimes()
+
+          isLoading.value = false
           resolve()
         },
         (err) => {
-          console.warn('⚠️ Geolocation failed, using Jakarta:', err.message)
-          resolve() // Tidak reject, gunakan default Jakarta
+          isLoading.value = false
+
+          if (err.code === err.PERMISSION_DENIED) {
+            locationPermission.value = 'denied'
+            error.value = 'Izin lokasi ditolak. Menggunakan lokasi default Jakarta.'
+            console.warn('⚠️ Geolocation permission denied')
+          } else if (err.code === err.POSITION_UNAVAILABLE) {
+            error.value = 'Lokasi tidak tersedia. Menggunakan lokasi default Jakarta.'
+            console.warn('⚠️ Position unavailable')
+          } else if (err.code === err.TIMEOUT) {
+            error.value = 'Waktu habis saat mendapatkan lokasi. Menggunakan lokasi default Jakarta.'
+            console.warn('⚠️ Geolocation timeout')
+          }
+
+          // Don't reject, just use default location
+          resolve()
         },
-        { timeout: 5000, enableHighAccuracy: false }
+        {
+          timeout: 10000,
+          enableHighAccuracy: true,
+          maximumAge: 0 // Don't use cached position
+        }
       )
     })
+  }
+
+  // Manual location update - can be triggered by user
+  async function updateLocation() {
+    try {
+      await requestGeolocation()
+    } catch (err) {
+      console.error('Failed to update location:', err)
+    }
   }
 
   function calculatePrayerTimes() {
@@ -135,29 +178,78 @@ export const usePrayerStore = defineStore('prayer', () => {
       time: prayerTimes.value![p.key as keyof PrayerTimes] as Date
     }))
 
-    // Find current prayer
+    // Get sunrise
+    const sunrise = prayerTimes.value.sunrise
+
+    // Calculate Dhuha start: 15-20 minutes after sunrise (sun rises about a spear's length)
+    const dhuhaStart = new Date(sunrise.getTime() + 15 * 60 * 1000) // 15 minutes after sunrise
+
+    // Calculate Dhuha end: 10-15 minutes before Dhuhr (before sun reaches zenith)
+    const dhuhaEnd = new Date(prayers[1].time.getTime() - 10 * 60 * 1000) // 10 minutes before Dhuhr
+
+    // Calculate Tahajjud time (last third of the night)
+    // Night duration: from Maghrib to Fajr
+    const maghribTime = prayers[3].time
+    const tomorrowFajr = new Date(prayers[0].time)
+    tomorrowFajr.setDate(tomorrowFajr.getDate() + 1)
+
+    const nightDuration = tomorrowFajr.getTime() - maghribTime.getTime()
+    const tahajjudStartTime = new Date(maghribTime.getTime() + (nightDuration * 2 / 3))
+
+    // Find current prayer with proper time windows
     let current: PrayerTime | null = null
     let next: PrayerTime | null = null
 
-    for (let i = prayers.length - 1; i >= 0; i--) {
-      if (now >= prayers[i].time) {
-        current = prayers[i]
-        next = i < prayers.length - 1 ? prayers[i + 1] : prayers[0]
-
-        // If next is tomorrow's Fajr
-        if (i === prayers.length - 1) {
-          const tomorrow = new Date(next.time)
-          tomorrow.setDate(tomorrow.getDate() + 1)
-          next = { ...next, time: tomorrow }
-        }
-        break
-      }
+    // Tahajjud time (last third of night until Fajr) - SUNNAH
+    if (now >= tahajjudStartTime && now < prayers[0].time) {
+      current = { name: 'Tahajjud', arabicName: 'التهجد', time: tahajjudStartTime }
+      next = prayers[0] // Next is Fajr
     }
-
-    // If before Fajr
-    if (!current) {
+    // Before Tahajjud - Night time (Isha extended) - SUNNAH: Witir, Night prayers
+    else if (now >= prayers[4].time && now < tahajjudStartTime) {
+      current = { name: 'Isya', arabicName: 'العشاء', time: prayers[4].time }
+      next = { name: 'Tahajjud', arabicName: 'التهجد', time: tahajjudStartTime }
+    }
+    // After midnight but before Isha (edge case for very early morning)
+    else if (now < prayers[0].time) {
+      // Check if we're past midnight but Isha hasn't happened yet (shouldn't normally happen)
       current = { name: 'Malam', arabicName: 'الليل', time: prayers[prayers.length - 1].time }
-      next = prayers[0]
+      next = prayers[0] // Next is Fajr
+    }
+    // Fajr time (until sunrise) - FARDH
+    else if (now >= prayers[0].time && now < sunrise) {
+      current = prayers[0] // Subuh
+      next = { name: 'Isyraq/Dhuha', arabicName: 'الإشراق', time: sunrise }
+    }
+    // Between sunrise and Dhuha start - Forbidden time (Isyraq can be prayed)
+    else if (now >= sunrise && now < dhuhaStart) {
+      current = { name: 'Isyraq/Dhuha', arabicName: 'الإشراق', time: sunrise }
+      next = { name: 'Dhuha', arabicName: 'الضحى', time: dhuhaStart }
+    }
+    // Dhuha time - SUNNAH
+    else if (now >= dhuhaStart && now < dhuhaEnd) {
+      current = { name: 'Dhuha', arabicName: 'الضحى', time: dhuhaStart }
+      next = prayers[1] // Dzuhur
+    }
+    // Between Dhuha end and Dhuhr - Forbidden time (sun at zenith)
+    else if (now >= dhuhaEnd && now < prayers[1].time) {
+      current = { name: 'Terlarang', arabicName: 'وقت النهي', time: dhuhaEnd }
+      next = prayers[1] // Dzuhur
+    }
+    // Dhuhr time (until Asr) - FARDH
+    else if (now >= prayers[1].time && now < prayers[2].time) {
+      current = prayers[1] // Dzuhur
+      next = prayers[2] // Ashar
+    }
+    // Asr time (until Maghrib) - FARDH
+    else if (now >= prayers[2].time && now < prayers[3].time) {
+      current = prayers[2] // Ashar
+      next = prayers[3] // Maghrib
+    }
+    // Maghrib time (until Isha) - FARDH
+    else if (now >= prayers[3].time && now < prayers[4].time) {
+      current = prayers[3] // Maghrib
+      next = prayers[4] // Isya
     }
 
     currentPrayer.value = current
@@ -227,12 +319,15 @@ export const usePrayerStore = defineStore('prayer', () => {
     error,
     timeUntilNext,
     prayerNames,
+    locationPermission,
+    isUsingDefaultLocation,
 
     // Actions
     initializePrayerTimes,
     calculatePrayerTimes,
     updateCountdown,
     formatTime,
-    stopUpdateInterval
+    stopUpdateInterval,
+    updateLocation
   }
 })
