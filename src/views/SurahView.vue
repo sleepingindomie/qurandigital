@@ -2,13 +2,13 @@
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useQuranStore } from '@/stores/quran'
-import { useBookmarkStore } from '@/stores/bookmark'
+// import { useBookmarkStore } from '@/stores/bookmark'
 import { useThemeStore } from '@/stores/theme'
 
 const route = useRoute()
 const router = useRouter()
 const quranStore = useQuranStore()
-const bookmarkStore = useBookmarkStore()
+// const bookmarkStore = useBookmarkStore()
 const themeStore = useThemeStore()
 
 const surahNumber = ref(parseInt(route.params.number as string))
@@ -108,23 +108,21 @@ function stopAudio() {
   isContinuousPlay.value = false
 }
 
-function toggleBookmark(ayahNumber: number) {
-  if (!quranStore.currentSurah) return
-
-  const ayah = quranStore.currentSurah.ayat?.find(a => a.nomorAyat === ayahNumber)
-  if (!ayah) return
-
-  const isAdded = bookmarkStore.toggleBookmark({
-    surahNumber: surahNumber.value,
-    surahName: quranStore.currentSurah.namaLatin,
-    surahNameArabic: quranStore.currentSurah.nama,
-    ayahNumber: ayah.nomorAyat,
-    textArabic: ayah.teksArab,
-    translation: ayah.teksIndonesia
-  })
-
-  console.log(isAdded ? '✅ Bookmark ditambahkan' : '❌ Bookmark dihapus')
-}
+// Bookmark functionality - reserved for future use
+// function toggleBookmark(ayahNumber: number) {
+//   if (!quranStore.currentSurah) return
+//   const ayah = quranStore.currentSurah.ayat?.find(a => a.nomorAyat === ayahNumber)
+//   if (!ayah) return
+//   const isAdded = bookmarkStore.toggleBookmark({
+//     surahNumber: surahNumber.value,
+//     surahName: quranStore.currentSurah.namaLatin,
+//     surahNameArabic: quranStore.currentSurah.nama,
+//     ayahNumber: ayah.nomorAyat,
+//     textArabic: ayah.teksArab,
+//     translation: ayah.teksIndonesia
+//   })
+//   console.log(isAdded ? '✅ Bookmark ditambahkan' : '❌ Bookmark dihapus')
+// }
 
 function goToPrevious() {
   if (surahNumber.value > 1) {

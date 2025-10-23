@@ -61,17 +61,40 @@ export interface AudioPlayerState {
   volume: number
 }
 
-// API Response types
+// API Response types (snake_case dari equran.id API)
 export interface EquranApiResponse {
   code: number
   message: string
   data: any
 }
 
+export interface SurahApiData {
+  nomor: number
+  nama: string
+  nama_latin: string
+  namaLatin?: string
+  jumlah_ayat: number
+  jumlahAyat?: number
+  tempat_turun: string
+  tempatTurun?: string
+  arti: string
+  deskripsi?: string
+  audio?: string
+  audioFull?: string
+  ayat?: AyahApiData[]
+}
+
+export interface AyahApiData {
+  nomorAyat: number
+  teksArab: string
+  teksLatin: string
+  teksIndonesia: string
+}
+
 export interface SurahListResponse extends EquranApiResponse {
-  data: Surah[]
+  data: SurahApiData[]
 }
 
 export interface SurahDetailResponse extends EquranApiResponse {
-  data: Surah
+  data: SurahApiData
 }

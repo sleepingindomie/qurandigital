@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { Surah, SurahListResponse, SurahDetailResponse } from '@/types'
+import type { Surah, SurahListResponse, SurahDetailResponse, AyahApiData } from '@/types'
 
 const API_BASE = 'https://equran.id/api/v2'
 
@@ -54,12 +54,12 @@ export const useQuranStore = defineStore('quran', () => {
         surahList.value = data.data.map(surah => ({
           nomor: surah.nomor,
           nama: surah.nama,
-          namaLatin: surah.namaLatin || surah.nama_latin,
-          jumlahAyat: surah.jumlahAyat || surah.jumlah_ayat,
-          tempatTurun: surah.tempatTurun || surah.tempat_turun,
+          namaLatin: surah.nama_latin,
+          jumlahAyat: surah.jumlah_ayat,
+          tempatTurun: surah.tempat_turun,
           arti: surah.arti,
           deskripsi: surah.deskripsi || '',
-          audioFull: surah.audioFull || surah.audio
+          audioFull: surah.audio || ''
         }))
 
         // Cache to localStorage
@@ -109,12 +109,12 @@ export const useQuranStore = defineStore('quran', () => {
         const surah: Surah = {
           nomor: data.data.nomor,
           nama: data.data.nama,
-          namaLatin: data.data.namaLatin || data.data.nama_latin,
-          jumlahAyat: data.data.jumlahAyat || data.data.jumlah_ayat,
-          tempatTurun: data.data.tempatTurun || data.data.tempat_turun,
+          namaLatin: data.data.nama_latin,
+          jumlahAyat: data.data.jumlah_ayat,
+          tempatTurun: data.data.tempat_turun,
           arti: data.data.arti,
           deskripsi: data.data.deskripsi || '',
-          ayat: data.data.ayat?.map((ayah: any) => ({
+          ayat: data.data.ayat?.map((ayah: AyahApiData) => ({
             nomorAyat: ayah.nomorAyat,
             teksArab: ayah.teksArab,
             teksLatin: ayah.teksLatin,
