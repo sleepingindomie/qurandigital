@@ -157,24 +157,27 @@ function getCardHoverClass(index: number) {
               <span>🕌</span>
               <span>Waktu Sholat</span>
             </h3>
+            <!-- Always show refresh button -->
             <button
-              v-if="prayerStore.isUsingDefaultLocation"
               @click="prayerStore.updateLocation()"
               :disabled="prayerStore.isLoading"
-              class="px-3 py-1 text-sm bg-sage-500 hover:bg-sage-600 text-white rounded-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
-              title="Gunakan lokasi Anda untuk waktu sholat yang akurat"
+              class="px-3 py-1 text-sm rounded-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
+              :class="prayerStore.isUsingDefaultLocation ? 'bg-sage-500 hover:bg-sage-600 text-white' : 'bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200'"
+              :title="prayerStore.isUsingDefaultLocation ? 'Gunakan lokasi Anda untuk waktu sholat yang akurat' : 'Perbarui lokasi Anda'"
             >
-              <span>📍</span>
-              <span v-if="!prayerStore.isLoading">Gunakan Lokasi Saya</span>
-              <span v-else>Loading...</span>
+              <span v-if="!prayerStore.isLoading">🔄</span>
+              <span v-else class="animate-spin">⏳</span>
+              <span v-if="!prayerStore.isLoading">{{ prayerStore.isUsingDefaultLocation ? 'Gunakan Lokasi Saya' : 'Refresh Lokasi' }}</span>
+              <span v-else>Memuat...</span>
             </button>
           </div>
           <p class="text-gray-700 dark:text-gray-200">
             {{ prayerStore.location.city }}<span v-if="prayerStore.location.country">, {{ prayerStore.location.country }}</span>
-            <span v-if="prayerStore.isUsingDefaultLocation" class="text-xs text-gray-600 dark:text-gray-400 ml-1">(default)</span>
+            <span v-if="prayerStore.isUsingDefaultLocation" class="text-xs text-orange-600 dark:text-orange-400 ml-1 font-semibold">(lokasi default)</span>
+            <span v-else class="text-xs text-green-600 dark:text-green-400 ml-1">✓ lokasi aktual</span>
           </p>
           <p v-if="prayerStore.error" class="text-sm text-orange-600 dark:text-orange-400 mt-1">
-            {{ prayerStore.error }}
+            ⚠️ {{ prayerStore.error }}
           </p>
         </div>
 

@@ -40,19 +40,27 @@ export const usePrayerStore = defineStore('prayer', () => {
     error.value = null
 
     try {
-      // Load saved location
-      const savedLocation = localStorage.getItem('prayer_location')
-      if (savedLocation) {
-        location.value = JSON.parse(savedLocation)
-        isUsingDefaultLocation.value = false
-        console.log('📍 Using saved location:', location.value.city)
-      } else {
-        // Use default location (Jakarta) until user requests their location
-        isUsingDefaultLocation.value = true
-        console.log('📍 Using default location: Jakarta')
+      // Always request location on every page load for accuracy
+      console.log('📍 Requesting current location...')
+
+      try {
+        await requestGeolocation()
+        // If successful, location is already updated
+      } catch (err) {
+        // If geolocation fails, try to use saved location
+        const savedLocation = localStorage.getItem('prayer_location')
+        if (savedLocation) {
+          location.value = JSON.parse(savedLocation)
+          isUsingDefaultLocation.value = false
+          console.log('📍 Using saved location:', location.value.city)
+        } else {
+          // Use default location (Jakarta) as last resort
+          isUsingDefaultLocation.value = true
+          console.log('📍 Using default location: Jakarta')
+        }
       }
 
-      // Calculate prayer times
+      // Calculate prayer times with current location
       calculatePrayerTimes()
 
       // Start update interval (every minute)
