@@ -1,164 +1,117 @@
 # Al-Quran Digital
 
-Aplikasi web Al-Quran digital modern dengan terjemahan Bahasa Indonesia, audio per ayat dengan mode continuous play, dan jadwal sholat realtime.
+Aplikasi web untuk membaca Al-Quran dengan terjemahan Bahasa Indonesia, mendengarkan murattal per ayat, dan melihat jadwal salat sesuai lokasi. Tampilannya dibangun di atas geometri Islam: setiap surah punya bingkai bintang delapan yang tergambar saat halamannya dibuka, teks Arab memakai Amiri Quran, dan teks Latin memakai Literata.
 
-## 📸 Screenshots
+Demo: [qurandigital-kappa.vercel.app](https://qurandigital-kappa.vercel.app/)
 
-![Light Mode - Homepage](screenshots/light-mode.png)
-*Homepage dengan daftar surah - Light Mode*
+![Beranda dengan jadwal salat, pencarian, dan daftar isi 114 surah](screenshots/home.png)
 
-![Dark Mode - Homepage](screenshots/dark-mode-home.png)
-*Homepage dengan daftar surah - Dark Mode*
+![Membaca Yasin sambil memutar murattal ayat 3](screenshots/reader.png)
 
-![Surah View](screenshots/dark-mode-surah.png)
-*Detail surah dengan audio player dan ayat*
+![Beranda dalam tema gelap](screenshots/dark.png)
 
-## 🌟 Fitur Utama
+![Tampilan ponsel: beranda, surah yang sedang diputar, dan daftar isi](screenshots/phone.png)
 
-### Core Features
-- **114 Surah Al-Quran** dengan terjemahan Bahasa Indonesia lengkap
-- **Audio Player** untuk setiap ayat (Abdul Basit Murattal 192kbps)
-- **Continuous Audio Playback** - Auto-play seluruh surah dari ayat ke ayat
-- **Jadwal Sholat Realtime** berdasarkan lokasi dengan countdown timer
-- **Search & Autocomplete** - Cari surah dengan saran otomatis
-- **Dark/Light Mode** dengan smooth transitions dan adaptive text colors
-- **Responsive Design** - Mobile-first approach untuk semua perangkat
+## Fitur
 
-### UI/UX Features
-- **Varied Animations** - 3 jenis animasi card yang berbeda (fadeInUp, fadeIn, scaleIn)
-- **Interactive Hover Effects** - Alternating lift & bounce effects
-- **Adaptive Color Contrast** - Font colors yang otomatis menyesuaikan dengan tema
-- **Cream/Beige/Sage Green** palette untuk light mode
-- **Navy/Grey** palette untuk dark mode
-- **Smooth Transitions** di semua komponen
-- **Staggered Card Animations** untuk pengalaman visual yang menarik
+### Membaca
 
-### Audio Features
-- **Continuous Play Mode** - Putar seluruh surah secara berurutan
-- Play/Pause/Stop controls yang responsif
-- Audio otomatis berhenti saat navigasi ke halaman lain
-- Visual feedback saat audio sedang diputar (highlight & pulse animation)
-- Auto-play ke ayat berikutnya
+- 114 surah dengan teks Arab, transliterasi, dan terjemahan Kemenag dari equran.id.
+- Basmalah tampil sebagai kepala surah tanpa nomor. Al-Fatihah memuatnya sebagai ayat 1, dan At-Taubah dibuka tanpa Basmalah.
+- Tafsir Kemenag per ayat, keterangan tiap surah, serta penanda awal juz dan hizb.
+- Tautan langsung ke ayat, misalnya `/surah/2/255`. Posisi baca terakhir tersimpan dan bisa dilanjutkan dari beranda.
+- Ayat bisa ditandai, lalu dikumpulkan di halaman Ditandai.
+- Pencarian menerima nama, arti, atau nomor surah, termasuk rujukan ayat seperti `36:9`.
+- Ukuran huruf Arab, tampilan Latin dan terjemahan, tema terang atau gelap, dan pilihan untuk mengurangi gerak bisa diatur sendiri.
 
-### Prayer Times Features
-- Kalkulasi otomatis berdasarkan geolokasi
-- Geolocation support dengan fallback Jakarta
-- Highlight waktu sholat aktif dengan countdown
-- Update otomatis setiap menit
-- Adaptive text colors untuk dark/light mode
+### Mendengarkan
 
-## 🛠️ Teknologi
+- Murattal per ayat dari tujuh qari. Abdul Basit dari everyayah.com menjadi bawaan, ditambah enam qari dari equran.id.
+- Putar beruntun, jeda antar ayat, ulangi ayat, dan layar yang mengikuti ayat yang sedang dibaca.
+- Pemutar tetap berjalan saat berpindah halaman dan bisa dikendalikan dari layar kunci lewat Media Session.
 
-### Frontend Stack
-- **Vue 3** - Progressive JavaScript Framework (Composition API)
-- **TypeScript** - Type-safe JavaScript
-- **Vite** - Next Generation Frontend Tooling
-- **Pinia** - State Management for Vue
-- **Vue Router** - Official Router for Vue.js
-- **TailwindCSS** - Utility-first CSS framework
+### Jadwal salat
 
-### Libraries & APIs
-- **Adhan.js** - Kalkulasi waktu sholat akurat
-- **EveryAyah.com API** - Audio Al-Quran per ayat (Abdul Basit)
-- **Equran.id API** - Data Al-Quran dengan terjemahan Indonesia
-- **Google Fonts** - Amiri Quran (Arab), Inter (Latin)
+- Waktu salat dihitung langsung di perangkat dengan adhan.js. Metode bawaannya Kemenag (Subuh 20°, Isya 18°, ihtiyat 2 menit). Lewat tombol Ganti metode, pengguna bisa beralih ke Muhammadiyah (Subuh 18° sesuai Munas Tarjih XXXI) atau Liga Muslim Dunia.
+- Zona WIB, WITA, atau WIT ditentukan dari koordinat. Jakarta dipakai sampai pengguna mengizinkan akses lokasi.
+- Hitung mundur ke waktu salat berikutnya, dan tanggal Hijriah menurut kalender Umm al-Qura.
 
-## 📁 Struktur Proyek
+### Lainnya
+
+- Bisa dipasang sebagai PWA. Cangkang aplikasi dan font tersimpan di perangkat, dan beberapa surah yang terakhir dibuka tetap bisa dibaca tanpa koneksi.
+- Navigasi keyboard, label untuk pembaca layar, dan gerak yang mengikuti pengaturan `prefers-reduced-motion`.
+
+## Teknologi
+
+- Vue 3 dengan `<script setup>` dan TypeScript
+- Vite 6 dan vite-plugin-pwa
+- Pinia dan Vue Router dalam mode history
+- adhan.js untuk perhitungan waktu salat
+- CSS biasa dengan design token, tanpa framework CSS
+- Font Amiri Quran dan Literata yang di-host sendiri
+- Playwright untuk tes end-to-end
+
+## Struktur proyek
 
 ```
-quran/
-├── public/               # Static assets
-├── src/
-│   ├── assets/          # Images, fonts, icons
-│   ├── components/      # Vue components (if any)
-│   ├── router/          # Vue Router configuration
-│   │   └── index.ts
-│   ├── stores/          # Pinia stores
-│   │   ├── quran.ts     # Quran data management
-│   │   ├── prayer.ts    # Prayer times management
-│   │   └── theme.ts     # Dark/light mode
-│   ├── views/           # Page components
-│   │   ├── HomeView.vue # Homepage dengan daftar surah
-│   │   └── SurahView.vue # Detail surah & ayat
-│   ├── App.vue          # Root component
-│   ├── main.ts          # Application entry point
-│   └── style.css        # Global styles & animations
-├── index.html
-├── package.json
-├── tsconfig.json
-├── vite.config.ts
-├── tailwind.config.js
-└── README.md
+src/
+├── components/    home, reader, player, settings, shell, ui
+├── composables/   navigasi dengan View Transitions dan helper lain
+├── data/          indeks 114 surah yang dibundel
+├── lib/           klien API, pencarian, jadwal salat, juz, mesin audio
+├── router/        rute /, /surah/:n, /surah/:n/:ayat, /tanda
+├── stores/        settings, library, reading, prayer, player, ui
+├── styles/        token, gaya dasar, dan CSS per area
+├── types/
+└── views/         HomeView, SurahView, TandaView
+e2e/               tes Playwright beserta fixture API dan audio
+public/            font, ikon PWA, favicon
+vercel.json        rewrite SPA dan header cache
 ```
 
-## 🚀 Setup & Installation
+## Menjalankan secara lokal
 
-### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn
+Butuh Node.js 18 atau lebih baru, dan versi 20 ke atas lebih disarankan.
 
-### Local Development
-
-1. Clone repository:
 ```bash
 git clone https://github.com/sleepingindomie/qurandigital.git
 cd qurandigital
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Jalankan development server:
-```bash
+npm ci
 npm run dev
 ```
 
-4. Buka browser: `http://localhost:3000`
+Setelah itu buka `http://localhost:3000`.
 
-### Build untuk Production
+Untuk build produksi (hasilnya di folder `dist/`) dan mencobanya:
 
 ```bash
 npm run build
-```
-
-Output akan berada di folder `dist/`
-
-### Preview Production Build
-
-```bash
 npm run preview
 ```
 
-## 🌐 Browser Support
+## Tes
 
-- Chrome/Edge (Latest)
-- Firefox (Latest)
-- Safari (Latest)
-- iOS Safari (14+)
-- Android Browser (Latest)
+Tes end-to-end memakai Playwright dan berjalan di ukuran desktop, ponsel, dan mode kurangi gerak. API equran.id dan audio diganti fixture dari folder `e2e/fixtures`, jadi hasil tes tidak bergantung pada jaringan.
 
-## 🙏 API Credits
+```bash
+npm run test:e2e        # seluruh tes dengan data fixture
+npm run test:e2e:live   # satu smoke test ke equran.id dan CDN audio
+```
 
-- **Equran.id API** - Data Al-Quran Indonesia
-- **EveryAyah.com** - Audio recitation (Abdul Basit Murattal)
-- **Adhan.js** - Islamic prayer times calculation
+Playwright memakai Brave di path bawaan macOS. Untuk browser berbasis Chromium yang lain, isi `BRAVE_PATH` dengan path file eksekusinya. Tambahkan `HEADED=1` kalau ingin melihat browsernya saat tes berjalan.
 
-## 📄 License
+## Deploy
 
-MIT License - Free for personal and commercial use
+Proyek ini siap di-deploy ke Vercel. `vercel.json` mengarahkan semua rute ke `index.html`, jadi tautan seperti `/surah/36` bisa dibuka langsung. File hasil build dikecualikan dari aturan itu: kalau tab yang sudah lama terbuka meminta chunk yang hilang setelah deploy baru, server menjawab 404 dan aplikasi memuat ulang halaman yang sama sekali saja.
 
-## 🤝 Kontribusi
+## Sumber data dan kredit
 
-Kontribusi sangat diterima! Silakan buat Pull Request atau Issue untuk:
-- Bug fixes
-- Feature requests
-- Documentation improvements
-- UI/UX improvements
-- Translation
+- [equran.id](https://equran.id) API v2: teks Arab, transliterasi, terjemahan, tafsir Kemenag, dan audio enam qari.
+- [everyayah.com](https://everyayah.com): murattal Abdul Basit.
+- [adhan.js](https://github.com/batoulapps/adhan-js): perhitungan waktu salat.
+- Pedoman Hisab Muhammadiyah dan putusan Munas Tarjih XXXI untuk parameter metode Muhammadiyah.
+- Font Amiri Quran dan Literata, dengan lisensi SIL Open Font License 1.1.
 
----
+## Lisensi
 
-**Al-Quran Digital** - Baca, Dengar, dan Pahami Al-Quran dengan Teknologi Modern
-
+MIT
