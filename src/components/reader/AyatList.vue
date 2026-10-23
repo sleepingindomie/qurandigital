@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // The rendered window of ayat rows (lo to hi) with the juz and hizb breaks
-// above them (spec 4.9). Its own component, so the running head changing on
-// every scrolled ayat does not re-render the rows.
+// above them. Its own component, so the running head changing on every
+// scrolled ayat does not re-render the rows.
 import { ref } from 'vue'
 import type { Surah } from '@/types'
 import type { RowState } from './row-state'

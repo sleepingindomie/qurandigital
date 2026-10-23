@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// Juz break (spec 4.9): hairline, star, hairline and a real heading.
+// Juz break: hairline, star, hairline and a real heading.
 import UiStarRule from '@/components/ui/UiStarRule.vue'
 
 defineProps<{ juz: number }>()

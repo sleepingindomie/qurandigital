@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// The home menu sheet (app.js openHomeMenu(), spec 3.6), opened by "Menu" in
-// the home bar below 1100 px: the main links and the theme options. The links
-// are plain anchors; the nav link handler scrolls on home or navigates.
+// The home menu sheet, opened by "Menu" in the home bar below 1100 px: the main
+// links and the theme options. The links are plain anchors; the nav link
+// handler scrolls on home or navigates.
 import UiPanel from '@/components/ui/UiPanel.vue'
 import UiRadioGroup from '@/components/ui/UiRadioGroup.vue'
 import { PANEL } from '@/stores/ui'

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-// Home (home.js renderHome()): prayer times, search and the resume block in
-// the hero, then the index. The search filters the index; ?q= and ?tab=juz
-// come back from the URL, and a real navigation to home while it is shown
-// (the wordmark from /?q=kahf) puts it back the way a fresh render would.
+// Home: prayer times, search and the resume block in the hero, then the index.
+// The search filters the index; ?q= and ?tab=juz come back from the URL, and a
+// real navigation to home while it is shown (the wordmark from /?q=kahf) puts
+// it back the way a fresh render would.
 import { onMounted, ref, shallowRef } from 'vue'
 import { useRoute } from 'vue-router'
 import HomeBar from '@/components/home/HomeBar.vue'

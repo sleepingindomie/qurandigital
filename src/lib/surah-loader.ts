@@ -75,7 +75,7 @@ function fromStorage(n: number): Surah | null {
 
 // Serialising a long surah (Al-Baqarah is about 600 thousand characters) and
 // writing it to localStorage blocks the main thread, so it runs after the
-// reader has rendered, in idle time (QA fix 13).
+// reader has rendered, in idle time.
 const later = (fn: () => void) => {
   if (typeof window.requestIdleCallback === 'function') window.requestIdleCallback(fn, { timeout: 2000 })
   else setTimeout(fn, 200)

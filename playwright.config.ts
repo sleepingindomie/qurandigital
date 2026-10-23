@@ -1,10 +1,10 @@
 import { defineConfig } from '@playwright/test'
 
-// E2E for the built app (_work/research/e2e-plan.md). Runs on the installed
-// Brave, never a downloaded browser. The web server builds into its own folder
-// (dist-e2e) so it never touches dist/, which another preview may be serving.
-// Tests tagged @live hit the real equran.id and audio CDN: they run only with
-// LIVE=1, and then nothing else runs.
+// E2E for the built app. Runs on the installed Brave (BRAVE_PATH overrides the
+// macOS default), never a downloaded browser. The web server builds into its
+// own folder (dist-e2e) so it never touches dist/, which another preview may be
+// serving. Tests tagged @live hit the real equran.id and audio CDN: they run
+// only with LIVE=1, and then nothing else runs.
 
 const BRAVE = process.env.BRAVE_PATH || '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser'
 const PORT = 4318

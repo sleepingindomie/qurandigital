@@ -1,6 +1,6 @@
-// Plan case 12, on the phone project (390 x 844): no horizontal overflow on
-// home, search results and the reader. innerWidth must stay 390, since a wide
-// child on a mobile viewport widens the layout viewport instead of scrolling.
+// On the phone project (390 x 844): no horizontal overflow on home, search
+// results and the reader. innerWidth must stay 390, since a wide child on a
+// mobile viewport widens the layout viewport instead of scrolling.
 import { expect, ayatRow, openHome, openSurah, test } from './helpers'
 import type { Page } from '@playwright/test'
 

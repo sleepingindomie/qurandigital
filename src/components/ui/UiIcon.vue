@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// One line icon (ui.js icon()). Extra classes fall through to the svg:
+// One line icon. Extra classes fall through to the svg:
 // <UiIcon name="right" class="arrow" /> renders class="i arrow".
 import type { IconName } from '@/lib/icons'
 import { ICONS } from '@/lib/icons'

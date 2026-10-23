@@ -1,5 +1,5 @@
-// Plan case 2: search by name, misspelling, number and Arabic; the empty
-// state; Escape; arrow keys through the options; the "36:9" ayat reference.
+// Search by name, misspelling, number and Arabic; the empty state; Escape;
+// arrow keys through the options; the "36:9" ayat reference.
 import { expect, ayatRow, openHome, test } from './helpers'
 import type { Page } from '@playwright/test'
 

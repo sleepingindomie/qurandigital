@@ -1,5 +1,5 @@
-// History routes (build brief): "/" with ?q= and ?tab=juz, "/surah/:n" and
-// "/surah/:n/:ayat" (the old app's /surah/:number links keep working), "/tanda".
+// History routes: "/" with ?q= and ?tab=juz, "/surah/:n" and "/surah/:n/:ayat"
+// (older /surah/:number links keep working), and "/tanda".
 // Unknown paths and surah numbers outside 1 to 114 go to "/"; an ayat outside
 // the surah is the reader's to handle (it opens at ayat 1 with a toast).
 // Scrolling and page transitions are composables/useNav.ts, so there is no
@@ -23,8 +23,8 @@ const router = createRouter({
   ],
 })
 
-// As the prototype's parse(): up to three digits each and surah 1 to 114, else
-// home. A global guard, since beforeEnter skips param changes (/surah/36 to /surah/999).
+// Up to three digits each and surah 1 to 114, else home. A global guard, since
+// beforeEnter skips param changes (/surah/36 to /surah/999).
 router.beforeEach((to: RouteLocationNormalized) => {
   if (to.name !== 'surah') return true
   const { n } = parseSurahParams(to.params)

@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="V extends string | number | null">
-// Text radiogroup (ui.js radioGroup()): options in a row, the selected one ink
-// with a 2 px underline; roving tabindex, arrow keys move and select.
+// Text radiogroup: options in a row, the selected one ink with a 2 px
+// underline; roving tabindex, arrow keys move and select.
 //   <UiRadioGroup v-model="value" label="Tema" :options="[['system', 'Ikuti sistem'], ['light', 'Terang']]" />
 // An option can be an object to set lang, aria-label or style on its button
 // (the Arabic size steps; RadioOption from @/types). Add class="radios-col" for a column (the qari list).

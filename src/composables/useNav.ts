@@ -1,7 +1,6 @@
-// Navigation with the prototype's page transitions, wrapped around Vue Router
-// (app.js nav(), go() and handleRoute()). Home to reader is one View
-// Transition: the old page fades out in 160 ms, the new one fades in over
-// 200 ms, and the only shared elements are the tapped Latin name
+// Navigation with page transitions, wrapped around Vue Router. Home to reader
+// is one View Transition: the old page fades out in 160 ms, the new one fades
+// in over 200 ms, and the only shared elements are the tapped Latin name
 // (surah-title) or the resume frame (surah-frame). Exits run before the route
 // changes. Previous and next surah use the reader's own exit instead of a
 // View Transition. Back and forward crossfade with no shared element except
@@ -9,7 +8,7 @@
 // in; with reduced motion every change is an instant swap.
 //
 // Every same-origin <a href> click goes through nav() (one listener on the
-// document, as in the prototype), so plain anchors are all a view needs:
+// document), so plain anchors are all a view needs:
 //   data-pn="prev|next"  previous or next surah with the reader exit
 //   data-sec="indeks|waktu"  a home section; on home it only scrolls there
 //   data-local  the link is handled by its own click handler, nav() skips it
@@ -105,8 +104,8 @@ async function go(to: string) {
   const r = router
   if (!r || busy) return
   const target = r.resolve(to)
-  // The prototype re-renders when the hash is already the target; same here,
-  // without a second history entry.
+  // A link to the current URL still navigates and renders again, without a
+  // second history entry.
   const same = target.fullPath === r.currentRoute.value.fullPath
   try {
     await r.push(same ? { path: target.path, query: target.query, hash: target.hash, force: true, replace: true } : target.fullPath)
@@ -130,7 +129,7 @@ export async function replaceQuiet(to: RouteLocationRaw): Promise<void> {
   }
 }
 
-/** The reader registers its previous and next exit (spec #12, #13); returns an unregister function. */
+/** The reader registers its previous and next exit; returns an unregister function. */
 export function registerPnExit(fn: (dir: PnDir) => Promise<unknown>): () => void {
   pnExit = fn
   return () => {
@@ -262,7 +261,8 @@ function undoExit() {
   for (const a of main.getAnimations({ subtree: true })) if (a.effect?.getTiming().fill === 'forwards') a.cancel()
 }
 
-// What the prototype's swap() did once the new page is in place.
+// Runs once the new page is in place: the route attribute, the title, the
+// scroll position, the shared row title and the fade without View Transitions.
 function swapped(to: RouteLocationNormalized, from: RouteLocationNormalized, f: InFlight) {
   const root = document.documentElement
   const main = mainEl()
@@ -297,7 +297,7 @@ function titleFor(to: RouteLocationNormalized) {
 }
 
 // Development check: no Arabic element, and no ancestor of one, may carry a
-// view-transition-name (spec 5.3).
+// view-transition-name.
 function devAssert() {
   requestAnimationFrame(() => {
     for (const named of Array.from(document.querySelectorAll('.pl-title, .frame-svg, .r-nm, .o-name'))) {

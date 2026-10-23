@@ -37,7 +37,7 @@ export interface PrayerStatus {
   dayKey: string
 }
 
-/** One cell of the six-cell strip, with the prototype's state rules applied. */
+/** One cell of the six-cell strip, with its now, next and past state. */
 export interface PrayerCell {
   key: PrayerKey
   name: string

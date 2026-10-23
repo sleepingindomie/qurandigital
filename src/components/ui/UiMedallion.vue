@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// Ayat medallion (ui.js medallion()): the shared star symbol, its trace copy and
-// the number. Attributes fall through to the root, so
+// Ayat medallion: the shared star symbol, its trace copy and the number.
+// Attributes fall through to the root, so
 // <UiMedallion tag="a" :n="k" :href="..." data-local aria-label="..." /> is the
 // reader's link. The trace is painted by writing trace.style.strokeDashoffset
 // (100 empty, 0 full) from the player store's onProgress().

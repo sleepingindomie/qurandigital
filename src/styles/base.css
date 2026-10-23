@@ -1,8 +1,8 @@
 /* Reset, document defaults, the Arabic box rule, .wrap, and the page and theme
    View Transitions (composables/useNav.ts adds vt-nav, the settings store adds
-   vt-theme). Ported from _work/proto/geometri/app.css. Owner: foundation.
-   As everywhere in this app, transitions and animations are declared only
-   inside the no-preference block, so reduced motion is the default state. */
+   vt-theme). As everywhere in this app, transitions and animations are
+   declared only inside the no-preference block, so reduced motion is the
+   default state. */
 
 *, *::before, *::after { box-sizing: border-box; }
 html {

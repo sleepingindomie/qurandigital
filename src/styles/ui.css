@@ -1,8 +1,6 @@
 /* Shared primitives drawn by components/ui and used by every area: icons, icon
    buttons, text links and buttons, the construction (frame, medallion, star
-   rule), the panel system (scrim, sheet, popover), radio groups and switches.
-   Ported from _work/proto/geometri/app.css. Owner: foundation; ask for
-   changes in your report's needs. */
+   rule), the panel system (scrim, sheet, popover), radio groups and switches. */
 
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 

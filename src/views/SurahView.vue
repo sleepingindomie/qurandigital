@@ -2,9 +2,8 @@
 // The reader route (/surah/:n and /surah/:n/:ayat). Vue Router reuses this view
 // from /surah/36 to /surah/37 (and to /surah/36/12 from the navigation sheet),
 // so the reader itself is keyed by the navigation: every real navigation mounts
-// a fresh ReaderPage with fresh state, as the prototype rendered the reader
-// again. The medallion link's quiet URL write keeps the same navigation and
-// leaves the page in place.
+// a fresh ReaderPage with fresh state. The medallion link's quiet URL write
+// keeps the same navigation and leaves the page in place.
 import { onBeforeUnmount, shallowRef } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { RouteParamsGeneric } from 'vue-router'

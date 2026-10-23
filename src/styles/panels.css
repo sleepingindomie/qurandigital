@@ -1,7 +1,6 @@
 /* Panel contents the shell renders: settings, qari, the phone player sheet,
-   the menu and the navigation sheet (panels.js, app.js). The panel frame itself
-   (.panel, .panel-sheet, .panel-pop, .scrim) is in ui.css.
-   First cut from _work/proto/geometri/app.css by the foundation. Owner: shell. */
+   the menu and the navigation sheet. The panel frame itself (.panel,
+   .panel-sheet, .panel-pop, .scrim) is in ui.css. */
 
 .field-s { height: 48px; margin-bottom: 12px; }
 .set-row { border-bottom: 1px solid var(--line); padding: 6px 0; min-height: 48px; }

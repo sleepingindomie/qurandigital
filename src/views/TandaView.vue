@@ -1,7 +1,6 @@
 <script setup lang="ts">
-// Ditandai (tanda.js, spec 3.7): bookmarks grouped by surah, each with the
-// first 120 characters of its translation. Arabic is never excerpted. The top
-// bar is the home bar.
+// Ditandai: bookmarks grouped by surah, each with the first 120 characters of
+// its translation. Arabic is never excerpted. The top bar is the home bar.
 import { computed, onBeforeUnmount, reactive, watch } from 'vue'
 import HomeBar from '@/components/home/HomeBar.vue'
 import { useReadingStore } from '@/stores/reading'

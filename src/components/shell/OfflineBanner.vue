@@ -1,8 +1,8 @@
 <script setup lang="ts">
-// The offline banner (app.js paintOffline(), spec 4.14): in the flow under the
-// top bar, it names the surahs stored for offline reading and opens the full
-// list inline. The ui store keeps is-offline on the root and announces
-// "Koneksi kembali." when the connection returns.
+// The offline banner: in the flow under the top bar, it names the surahs stored
+// for offline reading and opens the full list inline. The ui store keeps
+// is-offline on the root and announces "Koneksi kembali." when the connection
+// returns.
 import { computed, ref, watch } from 'vue'
 import UiIcon from '@/components/ui/UiIcon.vue'
 import { useUiStore } from '@/stores/ui'
@@ -12,7 +12,7 @@ import { surahInfo } from '@/data/surah-index'
 const ui = useUiStore()
 const library = useLibraryStore()
 
-// The list as it was when the connection dropped, as the prototype painted it.
+// The list as it was when the connection dropped; it stays put while offline.
 const avail = ref(library.offline.map(surahInfo))
 const open = ref(false)
 

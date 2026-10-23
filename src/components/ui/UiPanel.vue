@@ -1,9 +1,9 @@
 <script setup lang="ts">
-// The panel system (ui.js openPanel()). One panel at a time, owned by the ui
-// store. mode "auto" is a popover anchored to its button on desktop and a
-// bottom sheet below 1100 px; "sheet" is always a sheet. Escape closes, Tab is
-// trapped, a sheet has a scrim and closes on a downward drag of more than
-// 96 px, a click outside a popover closes it, and focus returns to the opener.
+// The panel system. One panel at a time, owned by the ui store. mode "auto" is
+// a popover anchored to its button on desktop and a bottom sheet below
+// 1100 px; "sheet" is always a sheet. Escape closes, Tab is trapped, a sheet
+// has a scrim and closes on a downward drag of more than 96 px, a click outside
+// a popover closes it, and focus returns to the opener.
 //
 //   <button ref="btn" @click="ui.openPanel('settings', { anchor: btn })">Aa</button>
 //   <UiPanel id="settings" title="Pengaturan baca" cls="panel-settings" v-slot="{ close }">

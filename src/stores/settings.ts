@@ -1,6 +1,6 @@
 // Reading settings (qd:settings, version 1) and the theme (qd:theme), applied to
 // the root element exactly as the boot scripts in index.html do before first
-// paint, so saved settings from the prototype carry over.
+// paint.
 import { defineStore } from 'pinia'
 import { computed, nextTick, reactive, ref } from 'vue'
 import type { ArabicStep, ResolvedTheme, Settings, SettingsPatch, ThemeChoice } from '@/types'
@@ -107,7 +107,7 @@ export const useSettingsStore = defineStore('settings', () => {
     applyTheme()
   }
 
-  /** Theme change with the 200 ms View Transition root crossfade (spec #36). */
+  /** Theme change with the 200 ms View Transition root crossfade. */
   function changeTheme(t: ThemeChoice | 'toggle') {
     const run = () => setTheme(t === 'toggle' ? (resolvedTheme.value === 'dark' ? 'light' : 'dark') : t)
     if (hasViewTransitions() && motionOK()) {

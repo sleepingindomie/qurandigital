@@ -1,7 +1,6 @@
-// The 114 surahs bundled with the app, generated from equran.id /surat
-// (_work/proto/geometri/index-data.js): [nomor, nama, namaLatin, jumlahAyat,
-// tempatTurun, arti]. Home, search, the reader plate and the juz table render
-// from it with no network.
+// The 114 surahs bundled with the app, generated from equran.id /surat:
+// [nomor, nama, namaLatin, jumlahAyat, tempatTurun, arti]. Home, search, the
+// reader plate and the juz table render from it with no network.
 import type { SurahIndexItem } from '@/types'
 
 type Row = [number, string, string, number, string, string]

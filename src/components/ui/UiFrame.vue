@@ -1,8 +1,8 @@
 <script setup lang="ts">
-// The surah frame (ui.js frame()): circle, two squares, octagon, inner circle
-// and star around the surah number. Size comes from --fs and --fn on the root,
-// set by the area's class (rs-frame, pl-frame). Fully drawn at rest; draw()
-// runs the draw-in of spec #5 when motion is allowed.
+// The surah frame: circle, two squares, octagon, inner circle and star around
+// the surah number. Size comes from --fs and --fn on the root, set by the
+// area's class (rs-frame, pl-frame). Fully drawn at rest; draw() runs the
+// draw-in (lib/frame.ts) when motion is allowed.
 import { ref } from 'vue'
 import { FRAME_PARTS, drawFrame } from '@/lib/frame'
 

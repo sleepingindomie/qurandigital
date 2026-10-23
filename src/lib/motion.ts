@@ -1,6 +1,6 @@
-// Motion vocabulary (spec 5.1) for script-driven animation. CSS motion lives in
-// the style files, declared only under prefers-reduced-motion: no-preference
-// and :root:not([data-motion="reduce"]).
+// Motion vocabulary for script-driven animation. CSS motion lives in the style
+// files, declared only under prefers-reduced-motion: no-preference and
+// :root:not([data-motion="reduce"]).
 import { reducedMotion } from './util'
 
 export const EASE_STD = 'cubic-bezier(0.2, 0, 0, 1)'

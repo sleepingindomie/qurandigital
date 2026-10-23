@@ -1,10 +1,10 @@
 <script setup lang="ts">
-// The surah reader (reader.js renderReader()): plate, Basmalah, ayat rows
-// rendered in chunks with per-ayat intrinsic sizes and the deep link window,
-// juz and hizb breaks, the running head, last read, audio follow with the
-// "Kembali ke ayat" pill, the recitation trace, tafsir, the ayat menu and the
-// end of surah block. SurahView mounts one instance per navigation (keyed), so
-// every piece of state here starts fresh for each surah.
+// The surah reader: plate, Basmalah, ayat rows rendered in chunks with per-ayat
+// intrinsic sizes and the deep link window, juz and hizb breaks, the running
+// head, last read, audio follow with the "Kembali ke ayat" pill, the
+// recitation trace, tafsir, the ayat menu and the end of surah block.
+// SurahView mounts one instance per navigation (keyed), so every piece of
+// state here starts fresh for each surah.
 import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref, shallowRef, watch } from 'vue'
 import type { PlayerStateDetail, Surah } from '@/types'
 import type { Arrival, PnDir } from '@/composables/useNav'
@@ -55,7 +55,8 @@ const anchorSupported = typeof CSS !== 'undefined' && !!CSS.supports && CSS.supp
 const easeStd = cubicBezier(0.2, 0, 0, 1)
 let alive = true
 
-// Spec 6.9 route rule: another surah stops playback and closes the bar.
+// Opening another surah stops playback and closes the bar, unless it was opened
+// to play on ("Putar <surah>").
 if (player.surah && player.surah.nomor !== n && props.arrival.autoplay !== n) player.stop()
 
 // ------------------------------------------------------------ elements
@@ -108,7 +109,7 @@ const topAyat = ref(startAyat0)
 const following = ref(true)
 
 // While recitation of this surah is followed, the head names the ayat being
-// recited; otherwise the top-most ayat in the reading band (QA fixes 16, 21).
+// recited; otherwise the top-most ayat in the reading band.
 const headAyat = computed(() =>
   player.isSurah(n) && player.ayat && following.value && settings.settings.follow ? player.ayat : topAyat.value,
 )
@@ -145,7 +146,7 @@ function observeRows() {
   })
 }
 
-// ------------------------------------------------------------ last read (QA fix 9)
+// ------------------------------------------------------------ last read
 const tracker = reading.createTracker({ surah: n, total: M, topAyat: () => topAyat.value, ready: () => !!surah.value })
 
 // ------------------------------------------------------------ about
@@ -155,7 +156,7 @@ const aboutText = computed(
   () => surah.value?.deskripsi || library.deskripsi(n) || (descTried.value ? 'Keterangan surah belum tersedia.' : 'Memuat keterangan surah.'),
 )
 // The /surat list is fetched only when "Tentang surah ini" is open and the
-// surah itself did not bring a description (QA note, fullstack 5).
+// surah itself did not bring a description.
 function needDesc() {
   if (!aboutOpen || surah.value?.deskripsi || library.deskripsi(n)) return
   if (!surah.value && view.value !== 'error') return
@@ -250,7 +251,7 @@ function hidePill() {
   else done()
 }
 
-// ------------------------------------------------------------ user scroll and follow (spec 5.5, 5.6)
+// ------------------------------------------------------------ user scroll and follow
 function userScrolled(e?: Event) {
   const t = e?.target
   if (t instanceof Element && t.closest('.panel, .q-list')) return
@@ -559,7 +560,7 @@ const offChange = settings.onChange((s, patch) => {
 // ------------------------------------------------------------ loading
 // The skeleton shows only if the surah is not there after 300 ms, so a fast
 // (cached) load never flashes grey bars. If it did show, it fades out in
-// 160 ms and the ayat list fades in as one block in 200 ms (QA fix 11).
+// 160 ms and the ayat list fades in as one block in 200 ms.
 let skT: ReturnType<typeof setTimeout> | undefined
 function load() {
   view.value = 'none'
@@ -611,8 +612,8 @@ async function show(s: Surah, fadeIn: boolean) {
     hi.value = Math.min(M, 12)
   }
   topAyat.value = target || 1
-  // Development check (spec 6.4): every juz that starts inside a surah starts
-  // on an ayat that carries the hizb mark U+06DE.
+  // Development check: every juz that starts inside a surah starts on an ayat
+  // that carries the hizb mark U+06DE.
   if (import.meta.env.DEV)
     for (const [a, j] of juzAt) if (a !== 1 && !hasHizbMark(s.ayat[a - 1]?.teksArab ?? '')) console.error(`Juz ${j} di ${info.namaLatin} ayat ${a} tanpa tanda hizb`)
   player.attachSurah(s)
@@ -670,7 +671,7 @@ function fillRest() {
 load()
 
 // ------------------------------------------------------------ arrival and exit
-// Exit for previous and next surah (spec #12, #13), run before the route changes.
+// Exit for previous and next surah, run before the route changes.
 function exitPN(dir: PnDir): Promise<unknown> {
   const r = rootEl.value
   if (!motionOK() || !r) return Promise.resolve()

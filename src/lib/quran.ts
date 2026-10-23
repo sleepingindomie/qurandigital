@@ -25,5 +25,5 @@ export const isReciterKey = (k: unknown): k is ReciterKey => RECITER_LIST.some((
 
 export const reciterName = (k: ReciterKey) => (RECITER_LIST.find((r) => r.key === k) || RECITER_LIST[0]).short
 
-/** Arabic size steps in px for the settings sample (spec 2.2). */
+/** Arabic size steps in px for the settings sample. */
 export const AR_STEPS: readonly number[] = [26.9, 32, 38, 45.3, 53.8, 64]

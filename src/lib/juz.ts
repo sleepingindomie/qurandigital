@@ -1,7 +1,6 @@
-// Juz starts in the standard Hafs (Madani) mushaf, bundled as a static table
-// (spec 6.4). Juz 7 starts at 5:82, not 5:83 as the prototype had (QA note 3):
-// checked against the per-ayat juz numbers in _work/ref/pretty/quranwbw, which
-// agree with the other 29 entries.
+// Juz starts in the standard Hafs (Madani) mushaf, bundled as a static table.
+// Juz 7 starts at 5:82 (some tables give 5:83): checked against the per-ayat
+// juz numbers on quranwbw.com, which agree with the other 29 entries.
 export const JUZ: readonly (readonly [number, number])[] = [
   [1, 1], [2, 142], [2, 253], [3, 93], [4, 24], [4, 148], [5, 82], [6, 111], [7, 88], [8, 41],
   [9, 93], [11, 6], [12, 53], [15, 1], [17, 1], [18, 75], [21, 1], [23, 1], [25, 21], [27, 56],

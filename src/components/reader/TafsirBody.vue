@@ -1,7 +1,6 @@
 <script setup lang="ts">
-// Kemenag tafsir of one ayat (reader.js tafsirBody()): static loading bars,
-// the paragraphs, or the error with "Coba lagi". Used in the desktop plate and
-// in the sheet below 1100 px.
+// Kemenag tafsir of one ayat: static loading bars, the paragraphs, or the error
+// with "Coba lagi". Used in the desktop plate and in the sheet below 1100 px.
 import { onBeforeUnmount, ref } from 'vue'
 import { useLibraryStore } from '@/stores/library'
 import { tafsirParagraphs } from '@/lib/api'

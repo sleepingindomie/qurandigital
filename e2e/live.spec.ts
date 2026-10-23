@@ -1,6 +1,6 @@
-// Plan case 14, smoke against the live services: no mocks (helpers.ts skips
-// them for @live). Runs only with LIVE=1 (npm run test:e2e:live). Home renders
-// from the bundled index, so the live API is first hit by the surah itself.
+// Smoke test against the live services: no mocks (helpers.ts skips them for
+// @live). Runs only with LIVE=1 (npm run test:e2e:live). Home renders from the
+// bundled index, so the live API is first hit by the surah itself.
 import { expect, ayatRow, indexRow, openHome, player, test } from './helpers'
 
 test('home, a surah from equran.id, and one ayat from the audio CDN', { tag: '@live' }, async ({ page }) => {

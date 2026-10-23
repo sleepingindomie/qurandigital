@@ -1,5 +1,5 @@
-// Plan case 1: home lists 114 surahs and every Latin name, ayat count and
-// place is filled in (the old app mapped snake_case and showed empty titles).
+// Home lists 114 surahs and every Latin name, ayat count and place is filled
+// in (an earlier version mapped snake_case fields and showed empty titles).
 import { expect, openHome, readFixture, test } from './helpers'
 
 interface ApiList {

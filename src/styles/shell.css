@@ -1,6 +1,5 @@
 /* App shell: skip link, the top bar region the views fill (.bar, .bar-in,
-   .bar-end), the offline banner, the toast, and Ditandai (tanda.js).
-   First cut from _work/proto/geometri/app.css by the foundation. Owner: shell. */
+   .bar-end), the offline banner, the toast, and Ditandai. */
 
 .skip {
   position: absolute; left: 16px; top: -100px; z-index: 50;

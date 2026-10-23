@@ -1,5 +1,5 @@
-// What an ayat row shows for the player state (reader.js paintRowStates()):
-// classes, the state word, aria-current, and the play button's icon and label.
+// What an ayat row shows for the player state: classes, the state word,
+// aria-current, and the play button's icon and label.
 import type { IconName } from '@/lib/icons'
 import type { PlayerPending, PlayerStatus } from '@/types'
 
@@ -53,9 +53,9 @@ export function rowStates(p: PlayerView): Map<number, RowState> {
 }
 
 /**
- * The plate's "Putar surah" and the phone play button: icon and words agree
- * (QA fix 8). Pause while busy; "Lanjutkan surah" only when a continuous
- * recitation is paused, otherwise the button starts the surah.
+ * The plate's "Putar surah" and the phone play button: icon and words agree.
+ * Pause while busy; "Lanjutkan surah" only when a continuous recitation is
+ * paused, otherwise the button starts the surah.
  */
 export function playAllState(p: PlayerView | null): PlayAllState {
   if (!p) return { busy: false, label: 'Putar surah' }

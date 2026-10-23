@@ -2,7 +2,7 @@
 // the default voice, the pause between ayat, repeat, the end of surah offer,
 // the locked screen state, retry with a cache bust, system pauses reaching the
 // UI, steady lock screen controls and a silent unlock for iOS. One instance
-// lives in the player store and survives route changes (spec 6.9).
+// lives in the player store and survives route changes.
 import type { PlayOptions, PlayerPending, PlayerStateDetail, PlayerStatus, ReciterKey } from '@/types'
 import { reciterName } from '../quran'
 import { pad3 } from '../util'
@@ -45,7 +45,7 @@ export class QPlayer extends AyatPlayer {
     this.gapMs = opts.gapMs
     this.repeat = opts.repeat
     // A pause the app did not ask for (a phone call, Bluetooth dropping, the
-    // system media controls) must reach the UI and Media Session (QA fix 10).
+    // system media controls) must reach the UI and Media Session.
     // Our own pause() already sets the state; the silent unlock clip, the gap
     // between ayat and the pause that comes right before "ended" are ignored.
     for (const a of [this.audio, this.spare]) {
@@ -108,7 +108,7 @@ export class QPlayer extends AyatPlayer {
   wait(n: number, again: boolean) {
     // Behind a hidden tab or a locked screen the timer is throttled, and iOS
     // refuses a play() that does not come straight from "ended", so the next
-    // ayat starts at once there (QA note, fullstack 2).
+    // ayat starts at once there.
     if (document.hidden) return this.play(n, { again })
     this.pending = { n, again }
     this.set('waiting', { nextAyat: n })
@@ -166,7 +166,7 @@ export class QPlayer extends AyatPlayer {
     if (status === 'playing') this.switching = false
     super.set(status, extra)
     // Keep the lock screen controls steady through the gap and the load of the
-    // next ayat instead of dropping to "none" at every ayat change (QA fix 20).
+    // next ayat instead of dropping to "none" at every ayat change.
     if (hasMediaSession() && this.ayat !== null && (status === 'waiting' || status === 'loading')) {
       try {
         navigator.mediaSession.playbackState = 'playing'

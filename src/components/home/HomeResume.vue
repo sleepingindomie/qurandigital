@@ -1,9 +1,9 @@
 <script setup lang="ts">
-// The resume block (home.js resumeBlock(), spec 4.4): one head line (frame,
-// Latin name and meta, Arabic name at the inline end), then the progress line
-// and the link. Without a last read it offers Al-Fatihah, and Al-Kahf on
-// Fridays in the place's zone. The whole block is one link through
-// .rs-link::after; the frame is the shared element when it is the source.
+// The resume block: one head line (frame, Latin name and meta, Arabic name at
+// the inline end), then the progress line and the link. Without a last read it
+// offers Al-Fatihah, and Al-Kahf on Fridays in the place's zone. The whole
+// block is one link through .rs-link::after; the frame is the shared element
+// when it is the source.
 import { computed, ref } from 'vue'
 import UiFrame from '@/components/ui/UiFrame.vue'
 import UiIcon from '@/components/ui/UiIcon.vue'
@@ -38,7 +38,7 @@ const last = computed(() => {
 })
 
 defineExpose({
-  /** The frame draw (spec #5), once per session; see HomeView. */
+  /** The frame draw, once per session; see HomeView. */
   drawFrame: (delay = 0) => frame.value?.draw(delay),
 })
 </script>

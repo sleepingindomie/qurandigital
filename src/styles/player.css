@@ -1,5 +1,4 @@
-/* Player bar (player.js bar UI). Ported from _work/proto/geometri/app.css by
-   the foundation; owner: shell. */
+/* The murattal player bar. */
 
 /* player */
 .player {
@@ -18,8 +17,8 @@
 .player .med .outline { stroke: var(--accent); }
 .player .med-n { color: var(--accent); }
 /* Reduced motion: a filled accent medallion. These come after the accent
-   number above, so the number reads on-accent under the system setting too
-   (in the prototype it was accent on accent there). */
+   number above, so the number reads on-accent under the system setting too,
+   instead of accent on accent. */
 @media (prefers-reduced-motion: reduce) {
   .player .med .outline { fill: var(--accent); stroke: var(--accent); }
   .player .med-n { color: var(--on-accent); }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// The reader's top bar (reader.js readerBar()), teleported into #bar-slot:
-// back to the index, the running head (opens the navigation sheet), previous
-// and next on desktop, the phone play button, Aa, theme and the progress line.
+// The reader's top bar, teleported into #bar-slot: back to the index, the
+// running head (opens the navigation sheet), previous and next on desktop, the
+// phone play button, Aa, theme and the progress line.
 import { ref } from 'vue'
 import type { SurahIndexItem } from '@/types'
 import UiIcon from '@/components/ui/UiIcon.vue'

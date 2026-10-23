@@ -1,6 +1,6 @@
-// Plan case 11, on the reduced-motion project (prefers-reduced-motion: reduce):
-// no readable text is left invisible after load on home and the reader, no
-// animation keeps running, and no transform sits on Arabic text.
+// On the reduced-motion project (prefers-reduced-motion: reduce): no readable
+// text is left invisible after load on home and the reader, no animation keeps
+// running, and no transform sits on Arabic text.
 import { expect, ayatRow, openHome, openSurah, test } from './helpers'
 import type { Page } from '@playwright/test'
 

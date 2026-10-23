@@ -1,5 +1,5 @@
-// Plan case 10: equran.id answers 500, the error state and "Coba lagi" appear,
-// and retry recovers.
+// equran.id answers 500: the error state and "Coba lagi" appear, and retry
+// recovers.
 import { expect, ayatRow, test } from './helpers'
 
 test.use({ allowConsole: [/status of 500/] })

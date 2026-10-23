@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// The ayat menu's items (reader.js openMenu()): role="menu", 48 px items,
-// arrow keys move between them. The panel focuses the first item on open.
+// The ayat menu's items: role="menu", 48 px items, arrow keys move between
+// them. The panel focuses the first item on open.
 import { ref } from 'vue'
 
 defineProps<{ label: string; items: readonly string[] }>()

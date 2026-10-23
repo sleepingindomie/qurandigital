@@ -1,8 +1,8 @@
 <script setup lang="ts">
-// The plate (reader.js, spec 3.2): sticky beside the text on desktop, a header
-// row that scrolls away below 1100. Frame, names, facts, reading position,
-// "Putar surah", the view toggles, "Tentang surah ini" and previous and next.
-// On desktop the tafsir crossfades into the plate in place of the info.
+// The plate: sticky beside the text on desktop, a header row that scrolls away
+// below 1100. Frame, names, facts, reading position, "Putar surah", the view
+// toggles, "Tentang surah ini" and previous and next. On desktop the tafsir
+// crossfades into the plate in place of the info.
 import { computed, nextTick, onMounted, onScopeDispose, ref } from 'vue'
 import type { SurahIndexItem } from '@/types'
 import UiFrame from '@/components/ui/UiFrame.vue'

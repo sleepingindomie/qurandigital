@@ -1,7 +1,6 @@
 <script setup lang="ts">
-// Ukuran Arab (panels.js sizeRow()): Otomatis plus six steps drawn as a
-// growing "ب", and a live sample of the first two words of the Basmalah at
-// the chosen size.
+// Ukuran Arab: Otomatis plus six steps drawn as a growing "ب", and a live
+// sample of the first two words of the Basmalah at the chosen size.
 import { computed } from 'vue'
 import UiRadioGroup from '@/components/ui/UiRadioGroup.vue'
 import { useSettingsStore } from '@/stores/settings'

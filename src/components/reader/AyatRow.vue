@@ -1,8 +1,8 @@
 <script setup lang="ts">
-// One ayat row (reader.js buildRow(), spec 4.8): medallion link, state word,
-// play, bookmark, tafsir and menu, then Arabic, transliteration, translation.
-// The U+06DE mark is removed from the Arabic; the break above the row shows it.
-// A touch long press on the medallion opens the ayat menu.
+// One ayat row: medallion link, state word, play, bookmark, tafsir and menu,
+// then Arabic, transliteration, translation. The U+06DE mark is removed from
+// the Arabic; the break above the row shows it. A touch long press on the
+// medallion opens the ayat menu.
 import { computed, onBeforeUnmount, ref } from 'vue'
 import type { Ayat } from '@/types'
 import type { RowState } from './row-state'

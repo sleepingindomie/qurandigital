@@ -1,9 +1,9 @@
 // Prayer times for home: the place (Jakarta or the reader's own location), the
 // method from settings, and a wall-clock ticker. It recomputes on every
-// half-minute boundary (as the prototype's home does), so midnight in the
-// place's zone and a tab that slept are right on the next tick; and at once
-// when the tab becomes visible, when the device comes online, and when the
-// method, the Hijri adjustment or the place changes (spec 6.6).
+// half-minute boundary, so midnight in the place's zone and a tab that slept
+// are right on the next tick; and at once when the tab becomes visible, when
+// the device comes online, and when the method, the Hijri adjustment or the
+// place changes.
 // Only HomeView should use this store: it imports adhan, which stays out of
 // the shell chunk that way.
 import { defineStore } from 'pinia'
@@ -157,7 +157,7 @@ export const usePrayerStore = defineStore('prayer', () => {
   const stripLabel = computed(() => `Jadwal salat ${place.value.isDefault ? 'Jakarta' : 'lokasi kamu'} hari ini, ${zone.value.label}`)
   const isFriday = computed(() => isFridayIn(tz.value, now.value))
 
-  /** The six strip cells with the prototype's rules, including last night's Isya before Subuh. */
+  /** The six strip cells and their states, including last night's Isya before Subuh. */
   const cells = computed<PrayerCell[]>(() => {
     const { today, current, next, fraction } = status.value
     const t = now.value

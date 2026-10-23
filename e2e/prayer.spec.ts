@@ -1,6 +1,6 @@
-// Plan case 6 and the method panel: prayer times for Jakarta on 23 Oct 2026 at
-// 15.30 WIB with no saved place, the three methods (Kemenag by default), the
-// location row granted and denied, and the recalculation after midnight.
+// Prayer times for Jakarta on 23 Oct 2026 at 15.30 WIB with no saved place:
+// the three methods (Kemenag by default) and the method picker, the location
+// row granted and denied, and the recalculation after midnight.
 // page.clock.setSystemTime sets the date and lets it run. setFixedTime would
 // freeze Date.now, which Vue compares to skip events dispatched before a
 // listener was attached, so a bubbled keydown would never reach an outer

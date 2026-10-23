@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// End of surah (spec 4.11): "Selesai Yasin", then the next and previous surah
-// as index rows (home.css .row rules). Rendered only for neighbours the API
-// names; the test hooks are on these rows on phone and tablet.
+// End of surah: "Selesai Yasin", then the next and previous surah as index
+// rows (home.css .row rules). Rendered only for neighbours the API names; the
+// test hooks are on these rows on phone and tablet.
 import type { SurahIndexItem } from '@/types'
 import { tempat } from '@/lib/util'
 import { sameName } from '@/components/home/search'

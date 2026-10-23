@@ -1,8 +1,8 @@
 // Last read (qd:lastRead) and bookmarks (qd:bookmarks), and the reader's
-// last-read tracker with the rules of QA fix 9: the scroll position is the main
-// source, written with a trailing 1 s throttle and flushed when the reader
-// leaves, the page hides or unloads; recitation writes the recited ayat only
-// while it is followed and the reader has not scrolled by hand in the last 5 s.
+// last-read tracker: the scroll position is the main source, written with a
+// trailing 1 s throttle and flushed when the reader leaves, the page hides or
+// unloads; recitation writes the recited ayat only while it is followed and the
+// reader has not scrolled by hand in the last 5 s.
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { Bookmark, LastRead } from '@/types'

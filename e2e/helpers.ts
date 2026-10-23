@@ -6,8 +6,8 @@
 // - Every audio URL (everyayah.com and cdn.equran.id) gets silent.mp3, one
 //   second of silence, as a plain 200 (fine for range requests too).
 // - Any other request off 127.0.0.1 is aborted, so nothing reaches the network.
-// - Console errors and page errors fail the test (plan case 13), except those
-//   a test lists in allowConsole for its own failure path.
+// - Console errors and page errors fail the test, except those a test lists
+//   in allowConsole for its own failure path.
 // Tests tagged @live skip all of the mocking.
 import fs from 'node:fs'
 import path from 'node:path'
@@ -23,7 +23,7 @@ export const FIXTURES = path.join(path.dirname(fileURLToPath(import.meta.url)), 
 /** Surahs with a fixture; tests open only these. */
 export const FIXTURE_SURAHS = [1, 2, 9, 18, 36, 55, 67, 112, 113, 114] as const
 
-/** 23 Oct 2026, 15.30 WIB: the clock of plan case 6. */
+/** 23 Oct 2026, 15.30 WIB: the clock of the prayer time tests. */
 export const WIB_1530 = new Date('2026-10-23T15:30:00+07:00')
 
 const SILENT = fs.readFileSync(path.join(FIXTURES, 'silent.mp3'))

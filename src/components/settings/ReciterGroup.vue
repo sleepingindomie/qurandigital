@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// The qari list (panels.js reciterGroup()), in the settings panel, the qari
-// picker and the phone player sheet. The player store follows the setting.
+// The qari list, in the settings panel, the qari picker and the phone player
+// sheet. The player store follows the setting.
 import UiRadioGroup from '@/components/ui/UiRadioGroup.vue'
 import { useSettingsStore } from '@/stores/settings'
 import { RECITERS } from './options'

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-// One index row (home.js indexRow(), on one line since 23 Oct 2026): number,
-// Latin name, the meaning or the last read ayat, and the Arabic name. The ayat
-// count and place stay in the link text for screen readers; "belum tersimpan"
-// shows only offline, for surahs that are not stored.
+// One index row on a single line: number, Latin name, the meaning or the last
+// read ayat, and the Arabic name. The ayat count and place stay in the link
+// text for screen readers; "belum tersimpan" shows only offline, for surahs
+// that are not stored.
 import { computed } from 'vue'
 import type { SurahIndexItem } from '@/types'
 import { tempat } from '@/lib/util'

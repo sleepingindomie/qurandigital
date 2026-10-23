@@ -1,7 +1,6 @@
-/* Reader (reader.js): reader top bar, plate, Basmalah, ayat rows and their
-   states, breaks, skeleton, error, end block, tafsir, ayat menu and the
-   "Kembali ke ayat" pill. The end of surah rows reuse home.css's .row rules.
-   First cut from _work/proto/geometri/app.css by the foundation. Owner: reader. */
+/* Reader: reader top bar, plate, Basmalah, ayat rows and their states,
+   breaks, skeleton, error, end block, tafsir, ayat menu and the "Kembali ke
+   ayat" pill. The end of surah rows reuse home.css's .row rules. */
 
 /* reader bar */
 .rd-bar .back {
@@ -49,8 +48,8 @@
 .pl-title { grid-area: title; font-size: 26.9px; line-height: 1.15; font-weight: 500; view-transition-name: surah-title; align-self: end; justify-self: start; }
 .pl-ar { grid-area: ar; font-size: 32px; line-height: 2.2; margin: 0; text-align: right; }
 .pl-arti, .pl-facts, .pl-pos, .pl-acts, .pl-pn { display: none; }
-/* "Tentang surah ini" on every width (Daffa, 23 Oct 2026): below 1100 px it is
-   a full-width line under the header that opens in place, as in the plate. */
+/* "Tentang surah ini" on every width: below 1100 px it is a full-width line
+   under the header that opens in place, as in the plate. */
 .pl-about { grid-area: about; margin-top: 8px; border-top: 1px solid var(--line); }
 .pl-metac { grid-area: metac; font-size: 13.5px; line-height: 1.45; color: var(--ink-2); align-self: start; }
 /* Phone: the construction gets its own line, 112 px and centred, so the frame

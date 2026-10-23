@@ -1,10 +1,9 @@
 // The single murattal player (QPlayer, lib/audio) and the reactive state the
 // UI reads: status, surah, ayat, time, reciter, continuous, follow, repeat,
-// gap and the end of surah offer. It survives route changes (spec 6.9).
+// gap and the end of surah offer. It survives route changes.
 //
 // The recitation trace moves every frame, so it is not reactive state: views
-// that draw it subscribe with onProgress() and write the style themselves,
-// as the prototype's paintTrace() did.
+// that draw it subscribe with onProgress() and write the style themselves.
 import { defineStore } from 'pinia'
 import { computed, markRaw, ref, shallowRef, watch } from 'vue'
 import type { PlayerDomStatus, PlayerPending, PlayerStateDetail, PlayerStatus, ReciterKey, Surah } from '@/types'
@@ -209,7 +208,7 @@ export const usePlayerStore = defineStore('player', () => {
     else engine.retry()
   }
 
-  /** "Putar <surah>": the only route change that continues playback (spec 6.9). */
+  /** "Putar <surah>": the only route change that continues playback. */
   function playNextSurah() {
     const nx = engine.surah?.selanjutnya
     if (nx) nav(`/surah/${nx.nomor}`, null, { autoplay: nx.nomor, via: 'pn', dir: 'next' })
@@ -246,7 +245,7 @@ export const usePlayerStore = defineStore('player', () => {
   }
 
   // ------------------------------------------------------------ bar text
-  // The prototype's render(), as data. The bar picks title.phone below 600.
+  // Everything the bar shows, as data. The bar picks title.phone below 600.
   const info = computed(() => (surah.value ? surahInfo(surah.value.nomor) : null))
   const total = computed(() => surah.value?.ayat.length ?? 0)
   /** The ayat the bar talks about. */

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// Hairline, star, hairline (ui.js starRule()). With `label` the rule belongs to
-// a heading (juz break) and is not hidden from assistive technology.
+// Hairline, star, hairline. With `label` the rule belongs to a heading (juz
+// break) and is not hidden from assistive technology.
 defineProps<{ label?: boolean }>()
 </script>
 

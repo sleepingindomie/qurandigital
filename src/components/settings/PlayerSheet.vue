@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// Phone: the player sheet (panels.js openPlayerSheet()) holds the time, qari,
-// repeat, gap, continuous and follow, so nothing of the wide bar is lost.
+// Phone: the player sheet holds the time, qari, repeat, gap, continuous and
+// follow, so nothing of the wide bar is lost.
 import UiPanel from '@/components/ui/UiPanel.vue'
 import ReciterGroup from './ReciterGroup.vue'
 import SetOptions from './SetOptions.vue'

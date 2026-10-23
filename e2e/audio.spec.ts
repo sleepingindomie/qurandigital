@@ -1,6 +1,6 @@
-// Plan case 5: murattal per ayat against one second of mocked silence. State is
-// read from the DOM: [data-qa="player"] carries data-status and data-ayat, and
-// the playing row carries aria-current="true".
+// Murattal per ayat against one second of mocked silence. State is read from
+// the DOM: [data-qa="player"] carries data-status and data-ayat, and the
+// playing row carries aria-current="true".
 import { expect, ayatRow, indexRow, openSurah, player, seedSettings, test } from './helpers'
 import type { Page } from '@playwright/test'
 

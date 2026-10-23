@@ -1,5 +1,5 @@
-// Plan case 4: deep links, reload, back and forward, the history fallback the
-// Vercel rewrite gives in production, and out-of-range addresses.
+// Deep links, reload, back and forward, the history fallback the Vercel
+// rewrite gives in production, and out-of-range addresses.
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'

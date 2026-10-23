@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="V extends string | number">
-// A settings row with a text radiogroup (panels.js opts()). Anything in the
-// default slot goes under the row's line.
+// A settings row with a text radiogroup. Anything in the default slot goes
+// under the row's line.
 import SetRow from './SetRow.vue'
 import UiRadioGroup from '@/components/ui/UiRadioGroup.vue'
 

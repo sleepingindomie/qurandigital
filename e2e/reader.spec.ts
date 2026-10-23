@@ -1,5 +1,5 @@
-// Plan case 3: the reader renders every ayat, and the Basmalah rule (a header
-// without a number, none for At-Taubah, ayat 1 of Al-Fatihah).
+// The reader renders every ayat, the Basmalah rule (a header without a
+// number, none for At-Taubah, ayat 1 of Al-Fatihah) and "Tentang surah ini".
 import { expect, ayatRow, openSurah, readFixture, test } from './helpers'
 
 // The header text as src/lib/quran.ts writes it. The API spells the same words

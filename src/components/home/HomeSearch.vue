@@ -1,9 +1,9 @@
 <script setup lang="ts">
-// The search combobox (home.js searchBlock(), spec 4.1 and 3.3): up to six
-// suggestions under the field, an ayat reference ("36:9", "yasin 9") as the
-// first option, "Lihat semua hasil (n)" when there are more, the count in a
-// polite region after 500 ms, and the query in ?q= after 300 ms. Every input
-// also filters the index below (emit filter).
+// The search combobox: up to six suggestions under the field, an ayat
+// reference ("36:9", "yasin 9") as the first option, "Lihat semua hasil (n)"
+// when there are more, the count in a polite region after 500 ms, and the
+// query in ?q= after 300 ms. Every input also filters the index below (emit
+// filter).
 import { nextTick, onUnmounted, ref, shallowRef } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 import type { SurahIndexItem } from '@/types'

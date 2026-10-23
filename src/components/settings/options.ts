@@ -1,5 +1,5 @@
-// Option lists of the settings rows (panels.js), shared by the settings panel,
-// the phone player sheet and the home menu.
+// Option lists of the settings rows, shared by the settings panel, the phone
+// player sheet and the home menu.
 import type { MotionChoice, ReciterKey, ThemeChoice } from '@/types'
 import { RECITER_LIST } from '@/lib/quran'
 

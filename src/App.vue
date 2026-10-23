@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// The app shell (app.js): the skip link, the top bar each view fills by
+// The app shell: the skip link, the top bar each view fills by
 // teleporting its bar into #bar-slot (<Teleport defer to="#bar-slot">), the
 // offline banner under it, main, the murattal bar after main, the polite live
 // region, the toast, the panels the shell renders and the global keys.

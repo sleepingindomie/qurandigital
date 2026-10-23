@@ -1,7 +1,7 @@
-// Global keys (app.js, spec 7): Space plays or pauses the loaded ayat, J and K
-// move to the next and previous ayat, and "/" focuses the search on home. None
-// of them act while typing in a field or with a modifier held, and Space
-// leaves buttons, links, radios, tabs, switches and summaries alone.
+// Global keys: Space plays or pauses the loaded ayat, J and K move to the next
+// and previous ayat, and "/" focuses the search on home. None of them act
+// while typing in a field or with a modifier held, and Space leaves buttons,
+// links, radios, tabs, switches and summaries alone.
 import { useRoute } from 'vue-router'
 import { usePlayerStore } from '@/stores/player'
 import { useEventListener } from '@/composables/useEventListener'

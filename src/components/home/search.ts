@@ -1,5 +1,5 @@
-// The home search run (home.js update()): an ayat reference first, then the
-// ranked surahs. Shared by the combobox and the index filter.
+// The home search run: an ayat reference first, then the ranked surahs. Shared
+// by the combobox and the index filter.
 import type { SurahIndexItem } from '@/types'
 import { SURAH_INDEX } from '@/data/surah-index'
 import { parseRef, searchSurah } from '@/lib/search'

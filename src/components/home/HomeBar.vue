@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// The home top bar (home.js homeBar()): wordmark, the desktop section links,
-// the Menu button below 1100 and the theme button. Ditandai uses it too, so it
-// renders the bar content only; the view teleports it into #bar-slot.
+// The home top bar: wordmark, the desktop section links, the Menu button below
+// 1100 and the theme button. Ditandai uses it too, so it renders the bar
+// content only; the view teleports it into #bar-slot.
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import type { RouteLocationNormalized } from 'vue-router'
@@ -17,8 +17,8 @@ const ui = useUiStore()
 const route = useRoute()
 const menu = ref<HTMLButtonElement | null>(null)
 
-// As the prototype, the current item is read when the page is reached, not
-// when home quietly writes ?tab=juz.
+// The current item is read when the page is reached, not when home quietly
+// writes ?tab=juz.
 const currentKey = (to: RouteLocationNormalized): NavKey =>
   to.name === 'home' && queryString(to.query.tab) === 'juz' ? 'juz' : to.name === 'tanda' ? 'tanda' : 'surah'
 const cur = ref<NavKey>(currentKey(route))

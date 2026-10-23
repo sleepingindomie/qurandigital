@@ -1,6 +1,6 @@
-// Surah search (spec 6.5). Latin keys lose case, marks, punctuation, spaces and
-// doubled letters ("Ali 'Imran", "ali imran" and "aliimran" meet); Arabic loses
-// harakat and tatweel.
+// Surah search. Latin keys lose case, marks, punctuation, spaces and doubled
+// letters ("Ali 'Imran", "ali imran" and "aliimran" meet); Arabic loses harakat
+// and tatweel.
 import type { SurahIndexItem } from '@/types'
 
 export interface SearchItem {

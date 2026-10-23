@@ -1,9 +1,9 @@
 <script setup lang="ts">
-// The murattal bar (player.js mountBar() and render(), spec 4.10), after main
-// in the DOM. It shows while the player store says so, slides in two frames
-// after it unhides and hides 220 ms after it slides out. The progress line and
-// the medallion trace follow the audio through onProgress(), not reactive
-// state. Tests read data-status and data-ayat from this element.
+// The murattal bar, after main in the DOM. It shows while the player store says
+// so, slides in two frames after it unhides and hides 220 ms after it slides
+// out. The progress line and the medallion trace follow the audio through
+// onProgress(), not reactive state. Tests read data-status and data-ayat from
+// this element.
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import UiIcon from '@/components/ui/UiIcon.vue'

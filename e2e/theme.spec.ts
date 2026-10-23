@@ -1,5 +1,5 @@
-// Plan case 7: the theme toggle flips data-theme and survives a reload; the
-// system preference applies while nothing is saved.
+// The theme toggle flips data-theme and survives a reload; the system
+// preference applies while nothing is saved.
 import { expect, openHome, test } from './helpers'
 
 test('the toggle flips data-theme and the choice survives a reload', async ({ page }) => {

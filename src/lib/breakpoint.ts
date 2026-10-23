@@ -1,5 +1,5 @@
-// Breakpoints from the spec: phone below 600, tablet 600 to 1099, desktop 1100
-// and up. The ui store mirrors this as a ref; plain code can read bp() directly.
+// Breakpoints: phone below 600, tablet 600 to 1099, desktop 1100 and up. The
+// ui store mirrors this as a ref; plain code can read bp() directly.
 import type { Breakpoint } from '@/types'
 
 const mqDesk = matchMedia('(min-width: 1100px)')

@@ -1,5 +1,5 @@
-// Plan case 8: bookmarks per ayat survive a reload and show on Ditandai; the
-// last read is written while reading and offered on home.
+// Bookmarks per ayat survive a reload and show on Ditandai; the last read is
+// written while reading and offered on home.
 import { expect, ayatRow, openSurah, test } from './helpers'
 
 test('a bookmark toggles per ayat and survives a reload', async ({ page }) => {

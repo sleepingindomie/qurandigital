@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// Prayer times (home.js prayerSection()): the now block, the location row with
-// its method and zone lines, and the six-cell strip with the interval line.
-// The prayer store computes and ticks; this renders it.
+// Prayer times: the now block, the location row with its method and zone
+// lines, and the six-cell strip with the interval line. The prayer store
+// computes and ticks; this renders it.
 // "Ganti metode" is an inline disclosure, not a panel, so the strip and the
 // countdown stay in view and change in place while the method is chosen.
 import { nextTick, onUnmounted, ref, watch } from 'vue'
@@ -57,7 +57,7 @@ watch(
 const lineTransform = (isNow: boolean, line: number) => (isNow ? `scaleX(${line.toFixed(4)})` : 'scaleX(0)')
 
 defineExpose({
-  /** Spec #7: the interval line grows to its fraction once per session. */
+  /** The interval line grows to its fraction once per session. */
   firstDraw() {
     if (sessionGet('qd:lineDrawn') || !motionOK()) return
     sessionSet('qd:lineDrawn', '1')

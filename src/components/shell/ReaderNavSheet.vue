@@ -1,8 +1,8 @@
 <script setup lang="ts">
-// The reader's navigation sheet (app.js openReaderNav(), spec 3.6), opened by
-// the title button in the reader bar: find another surah, the previous and
-// next surah, jump to an ayat, the juz that start inside this surah, and the
-// way home. It reads the surah from the route.
+// The reader's navigation sheet, opened by the title button in the reader bar:
+// find another surah, the previous and next surah, jump to an ayat, the juz
+// that start inside this surah, and the way home. It reads the surah from the
+// route.
 import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import UiPanel from '@/components/ui/UiPanel.vue'
@@ -33,7 +33,7 @@ const hits = computed(() => {
   return v ? searchSurah(SURAH_INDEX, v).slice(0, 6) : []
 })
 
-// Every opening builds a fresh sheet, as the prototype did.
+// Every opening starts with an empty search.
 watch(
   () => ui.panel?.seq,
   () => {

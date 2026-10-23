@@ -1,6 +1,6 @@
-// Height estimate for one ayat row (reader.js estimate()), written to
-// contain-intrinsic-size so rows that content-visibility skips still take
-// about their real height and the scrollbar does not jump as rows render.
+// Height estimate for one ayat row, written to contain-intrinsic-size so rows
+// that content-visibility skips still take about their real height and the
+// scrollbar does not jump as rows render.
 import type { ArabicStep, Ayat, Breakpoint, Settings } from '@/types'
 import { AR_STEPS } from '@/lib/quran'
 

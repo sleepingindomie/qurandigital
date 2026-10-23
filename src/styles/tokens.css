@@ -1,7 +1,6 @@
-/* Geometri tokens (build spec, section 2): colour for light and dark, the two
-   families with the size-adjusted Literata fallback, the four curves, and the
-   layout and Arabic size variables by breakpoint and by the size setting.
-   Ported from _work/proto/geometri/app.css. Owner: foundation. */
+/* Design tokens: colour for light and dark, the two families with the
+   size-adjusted Literata fallback, the four curves, and the layout and Arabic
+   size variables by breakpoint and by the size setting. */
 
 @font-face {
   font-family: "Literata Fallback";
@@ -69,7 +68,7 @@
   }
 }
 /* Amiri Quran still missing after 1000 ms (lib/fonts.ts): show the Arabic in
-   the fallback stack until it arrives (spec 8). */
+   the fallback stack until it arrives. */
 :root.ar-fallback { --f-ar: "Amiri", "Noto Naskh Arabic", serif; }
 @media (min-width: 600px) {
   :root { --gut: 32px; --bar: 64px; --ar: 38px; --tr: 18px; --lat: 16px; }

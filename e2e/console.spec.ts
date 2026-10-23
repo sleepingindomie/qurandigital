@@ -1,6 +1,6 @@
-// Plan case 13: no console errors or page errors. Every test in the suite
-// already fails on one (the consoleErrors fixture in helpers.ts); this walk
-// goes through the main flows in one page and checks the list explicitly.
+// No console errors or page errors. Every test in the suite already fails on
+// one (the consoleErrors fixture in helpers.ts); this walk goes through the
+// main flows in one page and checks the list explicitly.
 import { expect, ayatRow, openHome, player, test } from './helpers'
 
 test('a walk through home, search, reader, audio, tafsir, settings and Ditandai logs no errors', async ({ page, consoleErrors }) => {
@@ -29,7 +29,7 @@ test('a walk through home, search, reader, audio, tafsir, settings and Ditandai 
   const back = page.getByRole('button', { name: 'Kembali ke info surah' })
   if (await back.isVisible()) await back.click()
 
-  // "Tentang surah ini" lives in the desktop plate only, as in the prototype.
+  // Open "Tentang surah ini" where it is shown and wait for the description.
   const about = page.locator('summary', { hasText: 'Tentang surah ini' })
   if (await about.isVisible()) {
     await about.click()

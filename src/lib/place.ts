@@ -1,5 +1,5 @@
 // The place the prayer times are for: Jakarta until the reader asks for their
-// own location (never on load, spec 6.7). A granted position is kept in qd:place.
+// own location (never on load). A granted position is kept in qd:place.
 import type { LocateError, LocateErrorCode, Place } from '@/types'
 import { DEFAULT_PLACE } from './prayer-meta'
 

@@ -1,6 +1,6 @@
 // Test hooks that must exist once per page although the control is drawn in two
 // places: v-qa-at="'play-all@tab,desk'" keeps data-qa-at on the element and sets
-// data-qa="play-all" only at those breakpoints (ui.js syncQa).
+// data-qa="play-all" only at those breakpoints.
 import type { Directive } from 'vue'
 import type { Breakpoint } from '@/types'
 import { bp, onBp } from '@/lib/breakpoint'

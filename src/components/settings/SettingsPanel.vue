@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// Pengaturan baca (panels.js openSettings(), spec 3.4): a popover under the
-// reader's Aa button on desktop, a bottom sheet below 1100 px. The Aa button
-// only calls ui.openPanel(PANEL.settings, { anchor }).
+// Pengaturan baca: a popover under the reader's Aa button on desktop, a bottom
+// sheet below 1100 px. The Aa button only calls
+// ui.openPanel(PANEL.settings, { anchor }).
 import UiPanel from '@/components/ui/UiPanel.vue'
 import ArabicSizeRow from './ArabicSizeRow.vue'
 import ReciterGroup from './ReciterGroup.vue'

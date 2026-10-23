@@ -47,7 +47,7 @@ export interface SurahSummary extends SurahIndexItem {
 /**
  * A surah from /surat/{n}. The API's suratSebelumnya and suratSelanjutnya
  * (false at either end of the mushaf) become sebelumnya and selanjutnya, or
- * null, as in the prototype.
+ * null.
  */
 export interface Surah extends SurahSummary {
   ayat: Ayat[]

@@ -1,6 +1,6 @@
-// Plan case 9: with the context offline the notice appears and a surah opened
-// before stays readable. The service worker is blocked in this suite, so the
-// app shell has to be loaded (home and reader chunks) before going offline.
+// With the context offline the notice appears and a surah opened before stays
+// readable. The service worker is blocked in this suite, so the app shell has
+// to be loaded (home and reader chunks) before going offline.
 import { expect, ayatRow, indexRow, openHome, player, test } from './helpers'
 
 // With the service worker blocked, the browser's own refetch of the favicon

@@ -1,8 +1,7 @@
 <script setup lang="ts">
-// The index (home.js indexSection(), spec 4.3): Surah and Juz tabs with the
-// sliding underline, the search results state, and the rows. On desktop the
-// surah list runs row by row (QA fix 4). Only the open panel holds links, so
-// every surah has exactly one visible link.
+// The index: Surah and Juz tabs with the sliding underline, the search results
+// state, and the rows. On desktop the surah list runs row by row. Only the open
+// panel holds links, so every surah has exactly one visible link.
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import type { SurahIndexItem } from '@/types'
 import { SURAH_INDEX, surahInfo } from '@/data/surah-index'
@@ -70,7 +69,7 @@ function onTabKey(e: KeyboardEvent) {
   }
 }
 
-// A search always shows the surah list (home.js filter()).
+// A search always shows the surah list.
 watch(
   () => props.filter,
   (f) => {

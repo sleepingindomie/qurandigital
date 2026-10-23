@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// Switch (ui.js switchCtl()): 44 px hit area, a track with an octagon thumb,
-// then the word Aktif or Mati.
+// Switch: 44 px hit area, a track with an octagon thumb, then the word Aktif or
+// Mati.
 //   <UiSwitch v-model="latin" label="Tampilkan Latin" />
 import { SWITCH_THUMB_D } from '@/lib/frame'
 

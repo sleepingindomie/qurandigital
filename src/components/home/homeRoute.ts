@@ -1,8 +1,6 @@
-// Home's own URL writes (?q= and ?tab=juz) and the moments the prototype would
-// have rendered home again. The prototype rebuilt home on every real
-// navigation and wrote ?q= and ?tab= with history.replaceState, which never
-// re-rendered. Here the view stays mounted, so a navigation counts unless it
-// is one of home's own quiet writes.
+// Home's own URL writes (?q= and ?tab=juz), and the navigations that count as
+// arriving at home again. The view stays mounted across them, so a navigation
+// counts unless it is one of home's own quiet writes.
 import { getCurrentScope, onScopeDispose } from 'vue'
 import type { LocationQueryRaw, RouteLocationNormalized } from 'vue-router'
 import router from '@/router'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// A settings row with a switch (panels.js sw()).
+// A settings row with a switch.
 import SetRow from './SetRow.vue'
 import UiSwitch from '@/components/ui/UiSwitch.vue'
 import { useSettingsStore } from '@/stores/settings'

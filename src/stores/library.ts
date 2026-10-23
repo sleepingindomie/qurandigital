@@ -40,8 +40,8 @@ export const useLibraryStore = defineStore('library', () => {
   let listLoad: Promise<void> | null = null
   /**
    * Fetches /surat (about 123 KB) for the descriptions, once. Call it only when
-   * a description is needed and the surah itself has not supplied one (QA note,
-   * fullstack 5). Failure is silent.
+   * a description is needed and the surah itself has not supplied one. Failure
+   * is silent.
    */
   function loadDescriptions(): Promise<void> {
     if (!listLoad)

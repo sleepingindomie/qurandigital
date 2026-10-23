@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// Three static skeleton rows at the real line-box heights, no shimmer
-// (spec 4.13). Shown only when the surah is not there after 300 ms (QA fix 11).
+// Three static skeleton rows at the real line-box heights, no shimmer. Shown
+// only when the surah is not there after 300 ms.
 import UiMedallion from '@/components/ui/UiMedallion.vue'
 </script>
 

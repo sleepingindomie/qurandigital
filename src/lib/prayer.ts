@@ -1,6 +1,7 @@
-// Prayer times with adhan for the three methods of spec 6.6, the WIB, WITA and
-// WIT zone from coordinates, and times computed and formatted in the place's
-// own zone, so a phone set to another zone still shows the schedule of the place.
+// Prayer times with adhan for the three methods (Kemenag, Muhammadiyah and
+// Muslim World League), the WIB, WITA and WIT zone from coordinates, and times
+// computed and formatted in the place's own zone, so a phone set to another
+// zone still shows the schedule of the place.
 import { CalculationMethod, Coordinates, Madhab, PrayerTimes, Rounding } from 'adhan'
 import type { CalculationParameters } from 'adhan'
 import type { Place, PrayerMethod, PrayerStatus, PrayerTime, PrayerZone } from '@/types'
@@ -28,7 +29,7 @@ function paramsFor(method: PrayerMethod): CalculationParameters {
   return p
 }
 
-/** Zone from coordinates (spec 6.6). Outside Indonesia the device zone is used. */
+/** Zone from coordinates. Outside Indonesia the device zone is used. */
 function zoneFor(place: Pick<Place, 'lat' | 'lng'>): PrayerZone {
   const { lat, lng } = place
   const inID = lat >= -11 && lat <= 6 && lng >= 95 && lng <= 141.5

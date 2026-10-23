@@ -51,8 +51,9 @@ export const SWITCH_THUMB_D = polyD(8, 8, 7.4, 8, 22.5)
 const AT: Record<FramePartClass, number> = { 'k-circle': 0, 'k-sq': 80, 'k-oct': 160, 'k-inner': 160, 'k-star': 240 }
 
 /**
- * Spec #5: circle first, squares from +80 ms, octagon +160, star +240, each
- * 320 ms, starting `delay` ms from now. Does nothing when motion is not allowed.
+ * The frame draw-in: circle first, squares from +80 ms, octagon +160, star
+ * +240, each 320 ms, starting `delay` ms from now. Does nothing when motion is
+ * not allowed.
  */
 export function drawFrame(svg: SVGSVGElement | null | undefined, delay = 120): void {
   if (!svg || !motionOK() || !svg.animate) return
