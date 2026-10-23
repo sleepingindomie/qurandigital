@@ -7,8 +7,12 @@ import { parseRef, searchSurah } from '@/lib/search'
 /** Options shown in the listbox before "Lihat semua hasil". */
 export const MAKS = 6
 
+// Compared without the article and punctuation, so "Al-Hijr" and "Hijr" or
+// "As-Sajdah" and "Sajdah" also count as one name.
+const bareName = (t: string) => t.trim().toLowerCase().replace(/^a[a-z]{1,2}-/, '').replace(/[^a-z]/g, '')
+
 /** True when the meaning only repeats the Latin name (Yasin, Maryam, Luqman), so it is not shown twice. */
-export const sameName = (s: Pick<SurahIndexItem, 'arti' | 'namaLatin'>) => s.arti.trim().toLowerCase() === s.namaLatin.trim().toLowerCase()
+export const sameName = (s: Pick<SurahIndexItem, 'arti' | 'namaLatin'>) => bareName(s.arti) === bareName(s.namaLatin)
 
 export const NO_MATCH = 'Tidak ada surah yang cocok. Coba nama lain atau nomor 1 sampai 114.'
 
