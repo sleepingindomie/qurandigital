@@ -28,3 +28,8 @@ node_modules/
 # Build
 dist/
 build/
+
+# E2E
+dist-e2e/
+test-results/
+playwright-report/
