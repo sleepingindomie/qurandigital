@@ -1,0 +1,90 @@
+/* Geometri tokens (build spec, section 2): colour for light and dark, the two
+   families with the size-adjusted Literata fallback, the four curves, and the
+   layout and Arabic size variables by breakpoint and by the size setting.
+   Ported from _work/proto/geometri/app.css. Owner: foundation. */
+
+@font-face {
+  font-family: "Literata Fallback";
+  src: local("Georgia");
+  size-adjust: 104%;
+  ascent-override: 92%;
+  descent-override: 26%;
+}
+:root {
+  color-scheme: light;
+  --paper: #F2EFE8;
+  --tile: #E8E3D7;
+  --wash: #E3E5EE;
+  --ink: #17191E;
+  --ink-2: #454952;
+  --ink-3: #5E626A;
+  --line: #D3CDC1;
+  --line-2: #B4AEA2;
+  --accent: #33427A;
+  --on-accent: #FFFFFF;
+  --scrim: rgba(23, 25, 30, .40);
+
+  --f-ar: "Amiri Quran", "Amiri", "Noto Naskh Arabic", serif;
+  --f-la: "Literata", "Literata Fallback", Georgia, serif;
+
+  --ease-std: cubic-bezier(0.2, 0, 0, 1);
+  --ease-ui: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-draw: cubic-bezier(0.62, 0.05, 0.01, 0.99);
+  --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --gut: 16px;
+  --bar: 56px;
+  --ar: 32px;
+  --tr: 17px;
+  --lat: 15px;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0E1014;
+  --tile: #171A22;
+  --wash: #1B2236;
+  --ink: #ECE8DF;
+  --ink-2: #B9B5AC;
+  --ink-3: #8F8C86;
+  --line: #2B2F39;
+  --line-2: #464B57;
+  --accent: #A9B6E8;
+  --on-accent: #0E1014;
+  --scrim: rgba(0, 0, 0, .55);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --paper: #0E1014;
+    --tile: #171A22;
+    --wash: #1B2236;
+    --ink: #ECE8DF;
+    --ink-2: #B9B5AC;
+    --ink-3: #8F8C86;
+    --line: #2B2F39;
+    --line-2: #464B57;
+    --accent: #A9B6E8;
+    --on-accent: #0E1014;
+    --scrim: rgba(0, 0, 0, .55);
+  }
+}
+/* Amiri Quran still missing after 1000 ms (lib/fonts.ts): show the Arabic in
+   the fallback stack until it arrives (spec 8). */
+:root.ar-fallback { --f-ar: "Amiri", "Noto Naskh Arabic", serif; }
+@media (min-width: 600px) {
+  :root { --gut: 32px; --bar: 64px; --ar: 38px; --tr: 18px; --lat: 16px; }
+}
+@media (min-width: 1100px) {
+  :root { --gut: 64px; --ar: 45.3px; --tr: 19px; --lat: 16px; }
+}
+/* Arabic size setting: six steps, translation by table, never under 16 px. */
+:root[data-arstep="1"] { --ar: 26.9px; --tr: 16px; --lat: 15px; }
+:root[data-arstep="2"] { --ar: 32px; --tr: 17px; --lat: 15px; }
+:root[data-arstep="3"] { --ar: 38px; --tr: 17px; --lat: 15px; }
+:root[data-arstep="4"] { --ar: 45.3px; --tr: 19px; --lat: 17px; }
+:root[data-arstep="5"] { --ar: 53.8px; --tr: 19px; --lat: 17px; }
+:root[data-arstep="6"] { --ar: 64px; --tr: 22.6px; --lat: 20.6px; }
+@media (min-width: 600px) {
+  :root[data-arstep="3"] { --tr: 18px; --lat: 16px; }
+  :root[data-arstep="5"] { --tr: 22.6px; --lat: 20.6px; }
+}

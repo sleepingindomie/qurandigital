@@ -1,0 +1,64 @@
+/* Player bar (player.js bar UI). Ported from _work/proto/geometri/app.css by
+   the foundation; owner: shell. */
+
+/* player */
+.player {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom);
+  transform: translateY(100%);
+  view-transition-name: qd-player;
+}
+.player.on { transform: none; }
+.p-prog { position: absolute; left: 0; right: 0; top: -1px; height: 2px; overflow: hidden; }
+.p-prog i { display: block; height: 100%; background: var(--accent); transform-origin: left center; transform: scaleX(0); }
+.p-in { display: flex; align-items: center; gap: 4px; height: 64px; }
+.p-now { flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 10px; background: none; border: 0; padding: 0; text-align: start; min-height: 44px; }
+.p-now .med { width: 40px; height: 40px; }
+.player .med .outline { stroke: var(--accent); }
+.player .med-n { color: var(--accent); }
+/* Reduced motion: a filled accent medallion. These come after the accent
+   number above, so the number reads on-accent under the system setting too
+   (in the prototype it was accent on accent there). */
+@media (prefers-reduced-motion: reduce) {
+  .player .med .outline { fill: var(--accent); stroke: var(--accent); }
+  .player .med-n { color: var(--on-accent); }
+}
+:root[data-motion="reduce"] .player .med .outline { fill: var(--accent); stroke: var(--accent); }
+:root[data-motion="reduce"] .player .med-n { color: var(--on-accent); }
+
+.p-txt { display: flex; flex-direction: column; min-width: 0; }
+.p-title { font-size: 15px; font-weight: 500; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.p-sub { font-size: 13.5px; line-height: 1.35; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.player.has-action .p-sub { white-space: normal; color: var(--ink-2); }
+.p-ctl { display: flex; align-items: center; gap: 0; }
+.disc { width: 48px; height: 48px; border-radius: 50%; border: 0; display: grid; place-items: center; background: var(--accent); color: var(--on-accent); flex: none; }
+.disc:disabled { opacity: .5; }
+.disc .i-play { display: none; }
+.disc.is-play .i-play { display: block; }
+.disc.is-play .i-pause { display: none; }
+.p-end { display: flex; align-items: center; justify-content: flex-end; gap: 4px; }
+.p-extra { display: none; align-items: center; gap: 8px; }
+.p-time { font-size: 13.5px; color: var(--ink-3); font-variant-numeric: tabular-nums lining-nums; min-width: 84px; text-align: end; }
+.p-rep { position: relative; }
+.rep-n { position: absolute; right: 2px; bottom: 4px; font-size: 11px; line-height: 1; color: var(--ink); font-weight: 500; }
+.p-rep[aria-pressed="true"] { color: var(--ink); }
+.p-action { padding-inline: 4px; }
+.player.has-action .p-ctl { display: none; }
+@media (max-width: 599px) {
+  .player.has-action .p-now .med { display: none; }
+}
+@media (min-width: 600px) {
+  .p-in { gap: 16px; }
+  .p-title { font-size: 16px; }
+  .p-end { flex: 1 1 0; }
+  .p-extra { display: flex; }
+  .player.has-action .p-time { display: none; }
+  .player.has-action .p-ctl { display: flex; }
+}
+
+/* motion: declared only below, inside no-preference and without data-motion="reduce" */
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-motion="reduce"]) .player { transition: transform 200ms var(--ease-ui); }
+  :root:not([data-motion="reduce"]) .player.on { transition: transform 400ms var(--ease-settle); }
+}

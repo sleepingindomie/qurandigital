@@ -1,0 +1,65 @@
+/* Reset, document defaults, the Arabic box rule, .wrap, and the page and theme
+   View Transitions (composables/useNav.ts adds vt-nav, the settings store adds
+   vt-theme). Ported from _work/proto/geometri/app.css. Owner: foundation.
+   As everywhere in this app, transitions and animations are declared only
+   inside the no-preference block, so reduced motion is the default state. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  scroll-behavior: auto;
+  overflow-anchor: auto;
+  scroll-padding-top: calc(var(--bar) + 16px);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--paper);
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-la);
+  font-optical-sizing: auto;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+h1, h2, h3, p { margin: 0; }
+ol, ul { margin: 0; padding: 0; list-style: none; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: inherit; }
+[hidden] { display: none !important; }
+.sr {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.tnum { font-variant-numeric: tabular-nums lining-nums; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+:focus:not(:focus-visible) { outline: none; }
+.noscript { padding: 24px 16px; max-width: 600px; }
+[lang="ar"] {
+  font-family: var(--f-ar);
+  font-weight: 400;
+  line-height: 2;
+  overflow: visible;
+}
+.wrap {
+  width: 100%;
+  max-width: calc(1312px + 2 * var(--gut));
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+
+/* motion: declared only below, inside no-preference and without data-motion="reduce" */
+@keyframes qd-out { to { opacity: 0; } }
+@keyframes qd-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-motion="reduce"]).vt-nav::view-transition-old(root) { animation: 160ms var(--ease-ui) both qd-out; }
+  :root:not([data-motion="reduce"]).vt-nav::view-transition-new(root) { animation: 200ms var(--ease-std) both qd-in; }
+  :root:not([data-motion="reduce"]).vt-nav::view-transition-group(surah-title),
+  :root:not([data-motion="reduce"]).vt-nav::view-transition-group(surah-frame) { animation-duration: 400ms; animation-timing-function: var(--ease-std); }
+  :root:not([data-motion="reduce"]).vt-theme::view-transition-old(root) { animation: 200ms var(--ease-ui) both qd-out; }
+  :root:not([data-motion="reduce"]).vt-theme::view-transition-new(root) { animation: 200ms var(--ease-ui) both qd-in; }
+  :root:not([data-motion="reduce"]).vt-theme::view-transition-group(*) { animation-duration: 0s; }
+}

@@ -1,0 +1,36 @@
+/* Panel contents the shell renders: settings, qari, the phone player sheet,
+   the menu and the navigation sheet (panels.js, app.js). The panel frame itself
+   (.panel, .panel-sheet, .panel-pop, .scrim) is in ui.css.
+   First cut from _work/proto/geometri/app.css by the foundation. Owner: shell. */
+
+.field-s { height: 48px; margin-bottom: 12px; }
+.set-row { border-bottom: 1px solid var(--line); padding: 6px 0; min-height: 48px; }
+.set-line { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; }
+.set-col { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding-block: 10px; }
+.set-label { font-size: 16px; color: var(--ink); display: block; }
+.panel-nav .set-label { margin-top: 12px; margin-bottom: 8px; }
+.set-note { font-size: 15px; color: var(--ink-2); padding: 8px 0; font-variant-numeric: tabular-nums lining-nums; }
+/* the method sentence under "Metode jadwal salat", as home's .fine line */
+.set-meth { font-size: 13.5px; line-height: 20px; color: var(--ink-3); padding-bottom: 6px; text-wrap: pretty; }
+.set-sample { font-size: var(--ar); line-height: 2; margin: 0; align-self: stretch; text-align: right; }
+.ar-steps { gap: 0 4px; align-items: center; }
+.ar-steps .radio[lang="ar"] { width: 44px; height: 44px; padding: 0; text-align: center; line-height: 1; font-family: var(--f-ar); }
+/* Otomatis on its own line, so the six steps share one row (284 px) in the
+   popover and the sheet instead of leaving one or two steps on a second line */
+.ar-steps .radio:first-child { flex-basis: 100%; }
+.sheet-nav { display: flex; flex-direction: column; padding: 4px 0 8px; border-bottom: 1px solid var(--line); }
+.sheet-link { min-height: 48px; display: flex; align-items: center; font-size: 16px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+.sheet-link:last-child { border-bottom: 0; }
+.sheet-juz { display: flex; flex-direction: column; }
+.nav-res .nav-hit { padding: 0 4px; }
+.nav-ay::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+/* hover (pointer fine only) */
+@media (hover: hover) and (pointer: fine) {
+  .sheet-link:hover { background: var(--tile); }
+}
+
+/* motion: declared only below, inside no-preference and without data-motion="reduce" */
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-motion="reduce"]) .sheet-link { transition: background-color 160ms var(--ease-ui), box-shadow 160ms var(--ease-ui), color 160ms var(--ease-ui); }
+}

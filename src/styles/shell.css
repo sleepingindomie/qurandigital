@@ -1,0 +1,54 @@
+/* App shell: skip link, the top bar region the views fill (.bar, .bar-in,
+   .bar-end), the offline banner, the toast, and Ditandai (tanda.js).
+   First cut from _work/proto/geometri/app.css by the foundation. Owner: shell. */
+
+.skip {
+  position: absolute; left: 16px; top: -100px; z-index: 50;
+  background: var(--paper); color: var(--ink); border: 1px solid var(--ink-3);
+  padding: 10px 16px; text-decoration: none;
+}
+.skip:focus { top: 8px; }
+
+/* top bar */
+.bar {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.bar-in { display: flex; align-items: center; gap: 8px; height: var(--bar); }
+.bar-end { display: flex; align-items: center; gap: 4px; margin-inline-start: auto; }
+
+/* offline banner, in flow under the bar */
+.offline { border-top: 1px solid var(--line); font-size: 13.5px; line-height: 16px; }
+.off-in { display: flex; align-items: center; gap: 12px; min-height: 44px; flex-wrap: wrap; padding-block: 4px; }
+.off-in p { flex: 1 1 240px; }
+.off-in .txt-link { font-size: 13.5px; }
+.off-list { display: flex; flex-wrap: wrap; gap: 0 20px; padding: 0 var(--gut) 8px; max-width: calc(1312px + 2 * var(--gut)); margin-inline: auto; }
+.off-list .txt-link { font-size: 13.5px; }
+
+/* tanda */
+.tanda { max-width: calc(720px + 2 * var(--gut)); padding-top: 32px; padding-bottom: 160px; }
+.tanda-h { font-size: 32px; font-weight: 400; line-height: 1.2; }
+.tanda-c { color: var(--ink-2); margin-top: 4px; }
+.tanda-empty { margin-top: 24px; color: var(--ink-2); max-width: 560px; }
+.tanda-g { margin-top: 32px; }
+.tanda-gh { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px; border-bottom: 1px solid var(--line); }
+.tanda-gh h2 { font-size: 19px; font-weight: 500; }
+.tanda-ar { font-size: 26.9px; line-height: 2; margin: 0; }
+.tanda-row { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.tanda-ay { font-weight: 500; }
+.tanda-ex { color: var(--ink-2); margin-top: 4px; min-height: 1.5em; }
+.tanda-acts { display: flex; gap: 24px; }
+.toast {
+  position: fixed; left: 0; right: 0; margin-inline: auto; width: max-content; max-width: calc(100% - 32px);
+  bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 45;
+  background: var(--paper); border: 1px solid var(--ink-3); padding: 10px 16px; font-size: 15px;
+  opacity: 0; pointer-events: none;
+}
+.has-player .toast { bottom: calc(64px + 24px + env(safe-area-inset-bottom)); }
+.toast.on { opacity: 1; }
+
+/* motion: declared only below, inside no-preference and without data-motion="reduce" */
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-motion="reduce"]) .toast { transition: opacity 160ms var(--ease-ui); }
+}

@@ -1,25 +1,21 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Baca, dengarkan, dan pahami Al-Quran dengan terjemahan Bahasa Indonesia. Dilengkapi jadwal sholat realtime.">
-    <meta name="theme-color" content="#16a34a">
-
-    <!-- Preconnect to APIs -->
-    <link rel="preconnect" href="https://equran.id">
-    <link rel="preconnect" href="https://everyayah.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Google Fonts - Amiri Quran & Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <title>Al-Quran Digital - Baca, Dengar, dan Pahami</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F2EFE8">
+<script>try{var t=localStorage.getItem('qd:theme');t=t?JSON.parse(t):'system';if(t==='system')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;if(t==='dark')document.querySelector('meta[name="theme-color"]').setAttribute('content','#0E1014')}catch(e){}</script>
+<script>try{var s=JSON.parse(localStorage.getItem('qd:settings')||'null');if(s&&s.v===1){if(s.motion==='reduce')document.documentElement.dataset.motion='reduce';if(s.arabicStep)document.documentElement.dataset.arstep=s.arabicStep;if(s.latin===false)document.documentElement.classList.add('hide-lat');if(s.translation===false)document.documentElement.classList.add('hide-tr')}}catch(e){}</script>
+<title>Al-Quran Digital</title>
+<meta name="description" content="Baca Al-Quran dengan terjemahan Indonesia, dengarkan murattal per ayat, dan lihat jadwal salat.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/amiri-quran-arabic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/literata-latin.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+<noscript><p class="noscript">Al-Quran Digital butuh JavaScript untuk memuat surah, murattal, dan jadwal salat. Aktifkan JavaScript lalu muat ulang halaman ini.</p></noscript>
+<div id="app"></div>
+<script type="module" src="/src/main.ts"></script>
+</body>
 </html>

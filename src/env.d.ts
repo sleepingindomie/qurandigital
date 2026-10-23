@@ -1,9 +1,12 @@
 /// <reference types="vite/client" />
 
-interface ImportMetaEnv {
-  readonly BASE_URL: string
+import type { vQaAt } from './composables/qaAt'
+
+// v-qa-at is registered globally in main.ts.
+declare module 'vue' {
+  interface GlobalDirectives {
+    vQaAt: typeof vQaAt
+  }
 }
 
-interface ImportMeta {
-  readonly env: ImportMetaEnv
-}
+export {}

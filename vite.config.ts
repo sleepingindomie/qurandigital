@@ -8,61 +8,46 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
         name: 'Al-Quran Digital',
         short_name: 'Al-Quran',
-        description: 'Baca, dengarkan, dan pahami Al-Quran dengan terjemahan Bahasa Indonesia',
-        theme_color: '#16a34a',
-        background_color: '#ffffff',
+        description: 'Baca Al-Quran dengan terjemahan Indonesia, dengarkan murattal per ayat, dan lihat jadwal salat.',
+        lang: 'id',
+        start_url: '/',
+        scope: '/',
         display: 'standalone',
+        theme_color: '#F2EFE8',
+        background_color: '#F2EFE8',
         icons: [
-          {
-            src: '/icon-192x192.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: '/icon-512x512.png',
-            sizes: '512x512',
-            type: 'image/png'
-          }
-        ]
+          { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+          { src: '/icons/maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+        ],
       },
       workbox: {
+        globPatterns: ['**/*.{js,css,html,woff2,svg,png,webmanifest}'],
+        navigateFallback: 'index.html',
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/equran\.id\/api\/.*/i,
-            handler: 'NetworkFirst',
+            urlPattern: /^https:\/\/equran\.id\/api\/v2\//,
+            handler: 'StaleWhileRevalidate',
             options: {
-              cacheName: 'quran-api-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
-              }
-            }
+              cacheName: 'equran-api',
+              expiration: { maxEntries: 200, maxAgeSeconds: 30 * 24 * 60 * 60 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
           },
-          {
-            urlPattern: /^https:\/\/everyayah\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'audio-cache',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 365 * 24 * 60 * 60 // 1 year
-              }
-            }
-          }
-        ]
-      }
-    })
+          // No audio caching: the players use range requests.
+        ],
+      },
+    }),
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
-    }
+      '@': path.resolve(__dirname, './src'),
+    },
   },
   server: {
-    port: 3000
-  }
+    port: 3000,
+  },
 })
